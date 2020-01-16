@@ -33,7 +33,8 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun setMissionPatch(launch: Launch) {
-        val loadingListener = ImageLoadingListener(itemView.findViewById(R.id.missionPatchProgress))
+        val progressView = itemView.findViewById<View>(R.id.missionPatchProgress).apply { visibility = View.VISIBLE }
+        val loadingListener = ImageLoadingListener(progressView)
 
         Glide.with(itemView)
             .load(launch.missionPatch)
