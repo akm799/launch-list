@@ -36,6 +36,7 @@ Please note that the `cacheExpirySecs` was set to this low value for testing pur
 2. The layout of the items in the list can be improved to better display the mission patch with different screen sizes
 3. Although the application can display its data after configuration changes, its layout has not been optimised for landscape mode
 4. A cache cleaning functionality (including the cached images) should be added
+5. A more appropriate fallback mission patch image should be chosen (at the moment some default Android icon is used)
 
 More manual and unit testing can always be added as well as automation tests.
 
