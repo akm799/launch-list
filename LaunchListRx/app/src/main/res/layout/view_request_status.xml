@@ -19,11 +19,12 @@
         android:id="@+id/statusRetry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|bottom"
+        android:layout_gravity="end|bottom"
         android:layout_marginEnd="@dimen/retryMarginEnd"
         android:layout_marginBottom="@dimen/retryMarginBottom"
         android:gravity="center"
         android:clickable="true"
+        android:focusable="true"
         style="@style/LaunchText.Link"/>
 
 </merge>
