@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">LaunchListRx</string>
+
+    <string name="listTitle">Falcon 9 Launches</string>
+    <string name="mission_patch_description">Mission Patch</string>
+    <string name="mission_outcome_description">Mission Outcome</string>
+
+    <string name="launchDate">Launch date: %s</string>
+    <string name="missionOutcome">Mission outcome:</string>
+    <string name="unknownMissionName">Unknown mission name</string>
+    <string name="unknownLaunchDate">Unknown launch date</string>
+    <string name="unknownMissionOutcome">Mission outcome: unknown</string>
+
+    <string name="forbidden_error">Access error: has your token expired?</string>
+    <string name="network_error">Network error: please check your network connection.</string>
+    <string name="timeout_error">Timeout error: the server is taking to long to respond.</string>
+    <string name="server_error">Server error: internal server error.</string>
+    <string name="unknown_error">Unknown error.</string>
+
+    <string name="retryLink">&lt;u&gt;Retry&lt;/u&gt;</string>
+</resources>
