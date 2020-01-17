@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".presentation.ui.LaunchListActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/list_title_percentage"
+        android:gravity="center"
+        android:text="@string/listTitle"
+        android:background="@drawable/border_bottom_black"
+        style="@style/LaunchText.Title"/>
+
+    <co.uk.akm.test.launchlistcr.util.widget.list.LinearRecyclerView
+        android:id="@+id/launchList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/list_table_percentage"/>
+
+    <co.uk.akm.test.launchlistcr.util.widget.RequestStatusView
+        android:id="@+id/launchesRequestStatus"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="@integer/list_status_percentage"
+        android:background="@drawable/border_top_black"/>
+
+</LinearLayout>

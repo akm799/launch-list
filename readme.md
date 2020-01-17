@@ -4,7 +4,12 @@ Simple Android application that displays Falcon 9 Launch Data using the [Space X
 
 ### Import
 
-The project `LaunchListRx` is an Android Studio one. To build it you must import it into Android Studio.
+There are two Android projects in this folder:
+
+1. `LaunchListCR`
+2. `LaunchListRx`
+
+Both projects are Android Studio ones. To build either project you must import it into Android Studio.
 
 ### Description
 
@@ -14,6 +19,15 @@ The application consists of a single screen. The screen displays the Falcon 9 la
 - Mission name
 - Launch date
 - Launch outcome
+
+### Variants
+
+There are two variants of the application:
+
+1. `LaunchListCR`: A variant that uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+2. `LaunchListRx`: A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava)
+
+Both variants behave identically. They were chosen to demonstrate the use of these two frameworks.
 
 ### Design
 
@@ -43,7 +57,7 @@ More manual and unit testing can always be added as well as automation tests.
 
 ### Libraries
 
-The [Retrofit2](https://square.github.io/retrofit/) library was used to call the [Space X REST API](https://github.com/r-spacex/SpaceX-API) endpoints whereas [RxJava2](https://github.com/ReactiveX/RxJava) was employed to orchestrate the remote server calls and local cache calls. The Android [Room](https://developer.android.com/training/data-storage/room/index.html) persistence library was utilised for data caching. The 
+The [Retrofit2](https://square.github.io/retrofit/) library was used to call the [Space X REST API](https://github.com/r-spacex/SpaceX-API) endpoints whereas [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) or [RxJava2](https://github.com/ReactiveX/RxJava) were employed to orchestrate the remote server calls and local cache calls (depending on the application variant). The Android [Room](https://developer.android.com/training/data-storage/room/index.html) persistence library was utilised for data caching. The 
 [Glide](https://github.com/bumptech/glide) library helped with image display. For dependency injection, the [Koin](https://insert-koin.io/) framework was used. To aid unit testing, the [Mockito](https://site.mockito.org/) mocking framework and [Hamcrest](http://hamcrest.org/JavaHamcrest/) matcher library were included.
 
 ### Contact
