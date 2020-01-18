@@ -29,10 +29,8 @@ class PersistentLaunchRepositoryTest {
         val actual = runBlocking { underTest.getLaunches() }
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
-        runBlocking {
-            Mockito.verify(remote, Mockito.never()).getLaunches()
-            Mockito.verify(local, Mockito.never()).cacheLaunches(KAny.any(emptyList()))
-        }
+        KMockito.suspendedVerify(remote, Mockito.never()) { getLaunches() }
+        KMockito.suspendedVerify(local, Mockito.never()) { cacheLaunches(KAny.any(emptyList())) }
     }
 
     @Test
@@ -52,10 +50,8 @@ class PersistentLaunchRepositoryTest {
         val actual = runBlocking { underTest.getLaunches() }
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
-        runBlocking {
-            Mockito.verify(local, Mockito.never()).getLaunches()
-            Mockito.verify(local).cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument())
-        }
+        KMockito.suspendedVerify(local, Mockito.never()) { getLaunches() }
+        KMockito.suspendedVerify(local) { cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument()) }
     }
 
     @Test
@@ -84,9 +80,7 @@ class PersistentLaunchRepositoryTest {
         val actual = runBlocking { underTest.getLaunches() }
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
-        runBlocking {
-            Mockito.verify(local, Mockito.never()).getLaunches()
-            Mockito.verify(local).cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument())
-        }
+        KMockito.suspendedVerify(local, Mockito.never()) { getLaunches() }
+        KMockito.suspendedVerify(local) { cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument()) }
     }
 }
