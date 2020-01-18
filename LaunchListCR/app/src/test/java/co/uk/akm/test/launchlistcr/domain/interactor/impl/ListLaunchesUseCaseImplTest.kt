@@ -3,6 +3,8 @@ package co.uk.akm.test.launchlistcr.domain.interactor.impl
 import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
 import co.uk.akm.test.launchlistcr.domain.repo.LaunchRepository
+import co.uk.akm.test.launchlistcr.helper.KMockito
+import co.uk.akm.test.launchlistcr.helper.suspendedWhen
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.junit.Assert
@@ -21,7 +23,7 @@ class ListLaunchesUseCaseImplTest {
         val expected = listOf<Launch>(rightTypeLaunch)
 
         val repository = Mockito.mock(LaunchRepository::class.java)
-        Mockito.`when`(runBlocking { repository.getLaunches() }).thenReturn(fetchedLaunches)
+        KMockito.suspendedWhen{ repository.getLaunches() }.thenReturn(fetchedLaunches)
 
         val underTest = ListLaunchesUseCaseImpl(repository)
         val actual = runBlocking { underTest.listLaunches(type) }

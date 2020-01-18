@@ -9,6 +9,6 @@ class KMockito {
     companion object {}
 }
 
-fun <T> KMockito.Companion.suspendedWhen(f: suspend () -> T): OngoingStubbing<T> {
-    return Mockito.`when`(runBlocking { f.invoke() })
+fun <T> KMockito.Companion.suspendedWhen(methodCall: suspend () -> T): OngoingStubbing<T> {
+    return Mockito.`when`(runBlocking { methodCall.invoke() })
 }
