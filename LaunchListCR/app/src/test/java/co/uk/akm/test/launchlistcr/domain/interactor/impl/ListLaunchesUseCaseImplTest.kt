@@ -4,7 +4,6 @@ import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
 import co.uk.akm.test.launchlistcr.domain.repo.LaunchRepository
 import co.uk.akm.test.launchlistcr.helper.KMockito
-import co.uk.akm.test.launchlistcr.helper.suspendedWhen
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers
 import org.junit.Assert

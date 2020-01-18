@@ -5,7 +5,6 @@ import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
 import co.uk.akm.test.launchlistcr.helper.KMockito
 import co.uk.akm.test.launchlistcr.helper.matchers.KAny
-import co.uk.akm.test.launchlistcr.helper.suspendedWhen
 import co.uk.akm.test.launchlistcr.helper.providers.TestDispatcherProvider
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
 import kotlinx.coroutines.runBlocking
