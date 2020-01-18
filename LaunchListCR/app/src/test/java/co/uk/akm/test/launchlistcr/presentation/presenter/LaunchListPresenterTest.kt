@@ -7,7 +7,6 @@ import co.uk.akm.test.launchlistcr.helper.KMockito
 import co.uk.akm.test.launchlistcr.helper.matchers.KAny
 import co.uk.akm.test.launchlistcr.helper.providers.TestDispatcherProvider
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
-import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.mockito.Mockito
 
@@ -46,7 +45,6 @@ class LaunchListPresenterTest {
 
         Mockito.verify(view).displayError(error)
         Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
-        runBlocking {}
     }
 
     @Test
