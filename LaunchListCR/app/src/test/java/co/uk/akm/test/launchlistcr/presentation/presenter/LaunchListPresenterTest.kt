@@ -34,7 +34,7 @@ class LaunchListPresenterTest {
     fun shouldShowLaunchFetchError() {
         val error = RuntimeException("Launch fetch error.")
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
-        KMockito.suspendedWhen{ useCase.listLaunches(type) }.thenThrow(error)
+        KMockito.suspendedWhen { useCase.listLaunches(type) }.thenThrow(error)
 
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 
@@ -50,7 +50,7 @@ class LaunchListPresenterTest {
     @Test
     fun shouldNotDisplayFetchedLaunchesWhenViewDetaches() {
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
-        KMockito.suspendedWhen{ useCase.listLaunches(type) }.thenReturn(launches)
+        KMockito.suspendedWhen { useCase.listLaunches(type) }.thenReturn(launches)
 
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 

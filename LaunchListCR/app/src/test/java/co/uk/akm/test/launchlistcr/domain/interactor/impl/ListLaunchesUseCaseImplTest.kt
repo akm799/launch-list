@@ -22,7 +22,7 @@ class ListLaunchesUseCaseImplTest {
         val expected = listOf<Launch>(rightTypeLaunch)
 
         val repository = Mockito.mock(LaunchRepository::class.java)
-        KMockito.suspendedWhen{ repository.getLaunches() }.thenReturn(fetchedLaunches)
+        KMockito.suspendedWhen { repository.getLaunches() }.thenReturn(fetchedLaunches)
 
         val underTest = ListLaunchesUseCaseImpl(repository)
         val actual = runBlocking { underTest.listLaunches(type) }

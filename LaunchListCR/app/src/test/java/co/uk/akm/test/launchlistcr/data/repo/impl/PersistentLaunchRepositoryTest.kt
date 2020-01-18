@@ -21,8 +21,8 @@ class PersistentLaunchRepositoryTest {
         val remote = Mockito.mock(LaunchDataSource::class.java)
 
         val entities = dbEntities(flightNumber)
-        KMockito.suspendedWhen{ local.hasLaunches() }.thenReturn(true)
-        KMockito.suspendedWhen{ local.getLaunches() }.thenReturn(entities)
+        KMockito.suspendedWhen { local.hasLaunches() }.thenReturn(true)
+        KMockito.suspendedWhen { local.getLaunches() }.thenReturn(entities)
 
         val expected = models(flightNumber)
         val underTest = PersistentLaunchRepository(local, remote)
@@ -42,8 +42,8 @@ class PersistentLaunchRepositoryTest {
         val remote = Mockito.mock(LaunchDataSource::class.java)
 
         val entities = apiEntities(flightNumber)
-        KMockito.suspendedWhen{ local.hasLaunches() }.thenReturn(false)
-        KMockito.suspendedWhen{ remote.getLaunches() }.thenReturn(entities)
+        KMockito.suspendedWhen { local.hasLaunches() }.thenReturn(false)
+        KMockito.suspendedWhen { remote.getLaunches() }.thenReturn(entities)
 
         val expected = models(flightNumber)
         val underTest = PersistentLaunchRepository(local, remote)
@@ -72,8 +72,8 @@ class PersistentLaunchRepositoryTest {
         val remote = Mockito.mock(LaunchDataSource::class.java)
 
         val allEntities = apiEntities(flightNumber) + noFlightNumberEntity
-        KMockito.suspendedWhen{ local.hasLaunches() }.thenReturn(false)
-        KMockito.suspendedWhen{ remote.getLaunches() }.thenReturn(allEntities)
+        KMockito.suspendedWhen { local.hasLaunches() }.thenReturn(false)
+        KMockito.suspendedWhen { remote.getLaunches() }.thenReturn(allEntities)
 
         val expected = models(flightNumber) // The entity without flight number is not in our expected result list.
         val underTest = PersistentLaunchRepository(local, remote)
