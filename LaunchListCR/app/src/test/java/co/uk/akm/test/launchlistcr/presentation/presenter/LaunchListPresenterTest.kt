@@ -3,7 +3,9 @@ package co.uk.akm.test.launchlistcr.presentation.presenter
 import co.uk.akm.test.launchlistcr.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
+import co.uk.akm.test.launchlistcr.helper.KMockito
 import co.uk.akm.test.launchlistcr.helper.matchers.KAny
+import co.uk.akm.test.launchlistcr.helper.suspendedWhen
 import co.uk.akm.test.launchlistcr.helper.providers.TestDispatcherProvider
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
 import kotlinx.coroutines.runBlocking
@@ -17,7 +19,7 @@ class LaunchListPresenterTest {
     @Test
     fun shouldShowFetchedLaunches() {
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
-        Mockito.`when`(runBlocking { useCase.listLaunches(type) }).thenReturn(launches)
+        KMockito.suspendedWhen { useCase.listLaunches(type) }.thenReturn(launches)
 
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 
@@ -34,7 +36,7 @@ class LaunchListPresenterTest {
     fun shouldShowLaunchFetchError() {
         val error = RuntimeException("Launch fetch error.")
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
-        Mockito.`when`(runBlocking { useCase.listLaunches(type) }).thenThrow(error)
+        KMockito.suspendedWhen{ useCase.listLaunches(type) }.thenThrow(error)
 
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 
@@ -51,7 +53,7 @@ class LaunchListPresenterTest {
     @Test
     fun shouldNotDisplayFetchedLaunchesWhenViewDetaches() {
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
-        Mockito.`when`(runBlocking { useCase.listLaunches(type) }).thenReturn(launches)
+        KMockito.suspendedWhen{ useCase.listLaunches(type) }.thenReturn(launches)
 
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 
