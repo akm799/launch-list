@@ -12,6 +12,7 @@ import org.mockito.verification.VerificationMode
  * Kotlin-friendly Mockito functions.
  */
 class KMockito {
+
     companion object {
 
         /**
