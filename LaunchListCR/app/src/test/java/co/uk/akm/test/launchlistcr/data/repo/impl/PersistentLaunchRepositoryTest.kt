@@ -5,7 +5,6 @@ import co.uk.akm.test.launchlistcr.data.entity.server.RocketEntity
 import co.uk.akm.test.launchlistcr.data.source.LaunchCache
 import co.uk.akm.test.launchlistcr.data.source.LaunchDataSource
 import co.uk.akm.test.launchlistcr.helper.*
-import co.uk.akm.test.launchlistcr.helper.matchers.KAny
 import co.uk.akm.test.launchlistcr.helper.matchers.custom.LaunchApiEntityListMatcher
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -30,7 +29,7 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         KMockito.suspendedVerify(remote, Mockito.never()) { getLaunches() }
-        KMockito.suspendedVerify(local, Mockito.never()) { cacheLaunches(KAny.any(emptyList())) }
+        KMockito.suspendedVerify(local, Mockito.never()) { cacheLaunches(KMockito.any(emptyList())) }
     }
 
     @Test

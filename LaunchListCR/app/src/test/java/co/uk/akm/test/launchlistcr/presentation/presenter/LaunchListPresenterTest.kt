@@ -4,7 +4,6 @@ import co.uk.akm.test.launchlistcr.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
 import co.uk.akm.test.launchlistcr.helper.KMockito
-import co.uk.akm.test.launchlistcr.helper.matchers.KAny
 import co.uk.akm.test.launchlistcr.helper.providers.TestDispatcherProvider
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
 import org.junit.Test
@@ -27,7 +26,7 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view).displayLaunches(launches)
-        Mockito.verify(view, Mockito.never()).displayError(KAny.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
     }
 
     @Test
@@ -44,7 +43,7 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view).displayError(error)
-        Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
+        Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
     }
 
     @Test
@@ -60,7 +59,7 @@ class LaunchListPresenterTest {
         underTest.detachView()
         underTest.listLaunches(type)
 
-        Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
-        Mockito.verify(view, Mockito.never()).displayError(KAny.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
     }
 }
