@@ -1,17 +1,14 @@
-package co.uk.akm.test.launchlistcr.helper
+package co.uk.akm.test.launchlistrx.helper
 
-import co.uk.akm.test.launchlistcr.helper.matchers.KArgumentMatcher
-import co.uk.akm.test.launchlistcr.helper.matchers.KAny
-import kotlinx.coroutines.runBlocking
+import co.uk.akm.test.launchlistrx.helper.matchers.KAny
+import co.uk.akm.test.launchlistrx.helper.matchers.KArgumentMatcher
 import org.mockito.Mockito
-import org.mockito.stubbing.OngoingStubbing
-import org.mockito.verification.VerificationMode
-
 
 /**
  * Kotlin-friendly Mockito functions.
  */
 class KMockito {
+
     companion object {
 
         /**
@@ -24,7 +21,7 @@ class KMockito {
          * @return a Kotlin-friendly matcher that matches any argument value and will never return
          * a non-null reference
          */
-        fun <T> any(dummyInstance: T) = argThat(KAny(dummyInstance))
+        fun <T> any(dummyInstance: T): T = argThat(KAny(dummyInstance))
 
         /**
          * Kotlin-friendly matcher. This matcher will always return a non-null reference that
@@ -39,27 +36,6 @@ class KMockito {
          */
         fun <T> argThat(matcher: KArgumentMatcher<T>): T {
             return Mockito.argThat(matcher) ?: matcher.dummyInstance()
-        }
-
-        /**
-         * Mockito.when function for suspended method calls.
-         */
-        fun <T> suspendedWhen(methodCall: suspend () -> T): OngoingStubbing<T> {
-            return Mockito.`when`(runBlocking { methodCall.invoke() })
-        }
-
-        /**
-         * Mockito.verify function for suspended method calls.
-         */
-        fun <T> suspendedVerify(mock: T, method: suspend T.() -> Unit) {
-            runBlocking { Mockito.verify(mock).method() }
-        }
-
-        /**
-         * Mockito.verify function, with verification mode, for suspended method calls.
-         */
-        fun <T> suspendedVerify(mock: T, mode: VerificationMode, method: suspend T.() -> Unit) {
-            runBlocking { Mockito.verify(mock, mode).method() }
         }
     }
 }

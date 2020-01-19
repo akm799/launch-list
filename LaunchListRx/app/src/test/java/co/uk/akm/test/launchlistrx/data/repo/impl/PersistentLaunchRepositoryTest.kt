@@ -4,12 +4,8 @@ import co.uk.akm.test.launchlistrx.data.entity.server.LaunchApiEntity
 import co.uk.akm.test.launchlistrx.data.entity.server.RocketEntity
 import co.uk.akm.test.launchlistrx.data.source.LaunchCache
 import co.uk.akm.test.launchlistrx.data.source.LaunchDataSource
-import co.uk.akm.test.launchlistrx.helper.apiEntities
-import co.uk.akm.test.launchlistrx.helper.assertSame
-import co.uk.akm.test.launchlistrx.helper.dbEntities
-import co.uk.akm.test.launchlistrx.helper.matchers.KAny
+import co.uk.akm.test.launchlistrx.helper.*
 import co.uk.akm.test.launchlistrx.helper.matchers.custom.LaunchApiEntityListMatcher
-import co.uk.akm.test.launchlistrx.helper.models
 import io.reactivex.Single
 import org.junit.Test
 import org.mockito.Mockito
@@ -33,7 +29,7 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         Mockito.verify(remote, Mockito.never()).getLaunches()
-        Mockito.verify(local, Mockito.never()).cacheLaunches(KAny.any(emptyList()))
+        Mockito.verify(local, Mockito.never()).cacheLaunches(KMockito.any(emptyList()))
     }
 
     @Test
@@ -54,7 +50,7 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         Mockito.verify(local, Mockito.never()).getLaunches()
-        Mockito.verify(local).cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument())
+        Mockito.verify(local).cacheLaunches(KMockito.argThat(LaunchApiEntityListMatcher(flightNumbers)))
     }
 
     @Test
@@ -84,6 +80,6 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         Mockito.verify(local, Mockito.never()).getLaunches()
-        Mockito.verify(local).cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument())
+        Mockito.verify(local).cacheLaunches(KMockito.argThat(LaunchApiEntityListMatcher(flightNumbers)))
     }
 }

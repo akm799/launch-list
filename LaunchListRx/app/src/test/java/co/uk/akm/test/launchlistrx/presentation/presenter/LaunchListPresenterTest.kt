@@ -3,7 +3,7 @@ package co.uk.akm.test.launchlistrx.presentation.presenter
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.impl.LaunchData
-import co.uk.akm.test.launchlistrx.helper.matchers.KAny
+import co.uk.akm.test.launchlistrx.helper.KMockito
 import co.uk.akm.test.launchlistrx.helper.providers.TestSchedulerProvider
 import co.uk.akm.test.launchlistrx.presentation.LaunchListMVP
 import io.reactivex.Single
@@ -32,7 +32,7 @@ class LaunchListPresenterTest {
         ui.triggerActions()
 
         Mockito.verify(view).displayLaunches(launches)
-        Mockito.verify(view, Mockito.never()).displayError(KAny.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
     }
 
     @Test
@@ -53,7 +53,7 @@ class LaunchListPresenterTest {
         ui.triggerActions()
 
         Mockito.verify(view).displayError(error)
-        Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
+        Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
     }
 
     @Test
@@ -73,8 +73,8 @@ class LaunchListPresenterTest {
         io.triggerActions()
         ui.triggerActions()
 
-        Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
-        Mockito.verify(view, Mockito.never()).displayError(KAny.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
     }
 
     @Test
@@ -94,7 +94,7 @@ class LaunchListPresenterTest {
         io.triggerActions()
         ui.triggerActions()
 
-        Mockito.verify(view, Mockito.never()).displayLaunches(KAny.any(emptyList()))
-        Mockito.verify(view, Mockito.never()).displayError(KAny.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
     }
 }
