@@ -1,14 +1,15 @@
 package co.uk.akm.test.launchlistcr.helper.matchers
 
 import org.mockito.ArgumentMatcher
-import org.mockito.Mockito
 
 /**
  * Cannot use Mockito argument matchers (e.g. Mockito.any(), Mockito.eq(value) or Mockito.argThat(matcher))
  * with Kotlin because they can return null at some points during the testing process. Whereas Java
- * is OK with such nulls, Kotlin complains if the associated reference is defined as non-null.
+ * is OK with such nulls, Kotlin complains if the associated reference is defined as non-null. This
+ * Kotlin-friendly argument matcher defines a method which will return a dummy instance to satisfy
+ * the Kotlin runtime when the accepting reference is defined as non-null.
  */
-abstract class AbstractArgumentMatcher<T> : ArgumentMatcher<T> {
+abstract class KArgumentMatcher<T> : ArgumentMatcher<T> {
 
     /**
      * Returns a non-null dummy instance used to keep Kotlin happy when method arguments (used to
@@ -17,9 +18,4 @@ abstract class AbstractArgumentMatcher<T> : ArgumentMatcher<T> {
      * the Kotlin runtime happy.
      */
     abstract fun dummyInstance(): T
-
-    /**
-     * Returns a non-null reference that can be safely used in defining mock behaviour.
-     */
-    fun mockArgument(): T = (Mockito.argThat(this) ?: dummyInstance())
 }

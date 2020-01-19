@@ -50,7 +50,7 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         KMockito.suspendedVerify(local, Mockito.never()) { getLaunches() }
-        KMockito.suspendedVerify(local) { cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument()) }
+        KMockito.suspendedVerify(local) { cacheLaunches(KMockito.argThat(LaunchApiEntityListMatcher(flightNumbers))) }
     }
 
     @Test
@@ -80,6 +80,6 @@ class PersistentLaunchRepositoryTest {
         assertSame(expected, actual) { i1, i2 -> i1.flightNumber == i2.flightNumber }
 
         KMockito.suspendedVerify(local, Mockito.never()) { getLaunches() }
-        KMockito.suspendedVerify(local) { cacheLaunches(LaunchApiEntityListMatcher(flightNumbers).mockArgument()) }
+        KMockito.suspendedVerify(local) { cacheLaunches(KMockito.argThat(LaunchApiEntityListMatcher(flightNumbers))) }
     }
 }

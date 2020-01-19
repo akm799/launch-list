@@ -1,8 +1,8 @@
 package co.uk.akm.test.launchlistcr.helper.matchers.custom
 
-import co.uk.akm.test.launchlistcr.helper.matchers.AbstractArgumentMatcher
+import co.uk.akm.test.launchlistcr.helper.matchers.KArgumentMatcher
 
-abstract class AbstractLaunchListMatcher<T>(private val expectedFlightNumbers: List<Int>) : AbstractArgumentMatcher<List<T>>() {
+abstract class AbstractLaunchListMatcher<T>(private val expectedFlightNumbers: List<Int>) : KArgumentMatcher<List<T>>() {
 
     override fun dummyInstance(): List<T> = emptyList()
 

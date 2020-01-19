@@ -3,6 +3,7 @@ package co.uk.akm.test.launchlistcr.data.source.impl
 import android.app.Application
 import co.uk.akm.test.launchlistcr.data.db.LaunchDao
 import co.uk.akm.test.launchlistcr.data.db.LaunchDatabase
+import co.uk.akm.test.launchlistcr.helper.KMockito
 import co.uk.akm.test.launchlistcr.helper.apiEntities
 import co.uk.akm.test.launchlistcr.helper.dbEntities
 import co.uk.akm.test.launchlistcr.helper.matchers.custom.LaunchDbEntityListMatcher
@@ -103,6 +104,6 @@ class DbLaunchCacheTest {
         val underTest = DbLaunchCache(app, 30, dbProvider = TestDbProvider(db))
         runBlocking { underTest.cacheLaunches(entities) }
 
-        Mockito.verify(dao).cacheLaunches(LaunchDbEntityListMatcher(flightNumbers).mockArgument())
+        Mockito.verify(dao).cacheLaunches(KMockito.argThat(LaunchDbEntityListMatcher(flightNumbers)))
     }
 }
