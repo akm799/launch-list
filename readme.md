@@ -47,7 +47,7 @@ Please note that the `cacheExpirySecs` was set to this low value for testing pur
 ### Issues
 
 1. The required date parsing can be made more efficient (at least for API 26 or higher)
-2. The layout of the items in the list can be improved to better display the mission patch with different screen sizes
+2. The layout of the items in the list can be improved to function better with different screen sizes
 3. Although the application can display its data after configuration changes, its layout has not been optimised for landscape mode
 4. A cache cleaning functionality (including the cached images) should be added
 5. A more appropriate fallback mission patch image should be chosen (at the moment some default Android icon is used)
