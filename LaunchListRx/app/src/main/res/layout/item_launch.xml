@@ -24,7 +24,7 @@
             android:id="@+id/missionPatch"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
+            android:scaleType="fitCenter"
             android:contentDescription="@string/mission_patch_description"/>
 
         <ProgressBar
