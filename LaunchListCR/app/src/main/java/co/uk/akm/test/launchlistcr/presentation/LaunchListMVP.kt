@@ -1,5 +1,6 @@
 package co.uk.akm.test.launchlistcr.presentation
 
+import androidx.annotation.StringRes
 import co.uk.akm.test.launchlistcr.domain.model.Launch
 
 interface LaunchListMVP {
@@ -8,7 +9,7 @@ interface LaunchListMVP {
 
         fun displayLaunches(launches: List<Launch>)
 
-        fun displayError(error: Throwable)
+        fun displayError(@StringRes errorResId: Int)
     }
 
     interface Presenter {

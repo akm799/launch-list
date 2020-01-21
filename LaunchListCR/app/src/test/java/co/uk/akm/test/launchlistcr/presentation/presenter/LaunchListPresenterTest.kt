@@ -6,6 +6,7 @@ import co.uk.akm.test.launchlistcr.domain.model.impl.LaunchData
 import co.uk.akm.test.launchlistcr.helper.KMockito
 import co.uk.akm.test.launchlistcr.helper.providers.TestDispatcherProvider
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
+import co.uk.akm.test.launchlistcr.util.error.ErrorResolver
 import org.junit.Test
 import org.mockito.Mockito
 
@@ -26,7 +27,7 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view).displayLaunches(launches)
-        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(0))
     }
 
     @Test
@@ -35,14 +36,18 @@ class LaunchListPresenterTest {
         val useCase = Mockito.mock(ListLaunchesUseCase::class.java)
         KMockito.suspendedWhen { useCase.listLaunches(type) }.thenThrow(error)
 
+        val errorResId = 42
+        val errorResolver = Mockito.mock(ErrorResolver::class.java)
+        Mockito.`when`(errorResolver.findErrorMessageResId(error)).thenReturn(errorResId)
+
         val view = Mockito.mock(LaunchListMVP.View::class.java)
 
-        val underTest = LaunchListPresenter(useCase, TestDispatcherProvider())
+        val underTest = LaunchListPresenter(useCase, TestDispatcherProvider(), errorResolver)
 
         underTest.attachView(view)
         underTest.listLaunches(type)
 
-        Mockito.verify(view).displayError(error)
+        Mockito.verify(view).displayError(errorResId)
         Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
     }
 
@@ -60,6 +65,6 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
-        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(Exception()))
+        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(0))
     }
 }

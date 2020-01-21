@@ -4,13 +4,16 @@ import co.uk.akm.test.launchlistcr.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistcr.domain.model.Launch
 import co.uk.akm.test.launchlistcr.presentation.LaunchListMVP
 import co.uk.akm.test.launchlistcr.util.cr.CallResult
+import co.uk.akm.test.launchlistcr.util.error.DefaultErrorResolver
+import co.uk.akm.test.launchlistcr.util.error.ErrorResolver
 import co.uk.akm.test.launchlistcr.util.providers.cr.DefaultDispatcherProvider
 import co.uk.akm.test.launchlistcr.util.providers.cr.DispatcherProvider
 import kotlinx.coroutines.*
 
 class LaunchListPresenter(
     private val useCase: ListLaunchesUseCase,
-    private val dispatcherProvider: DispatcherProvider = DefaultDispatcherProvider()
+    private val dispatcherProvider: DispatcherProvider = DefaultDispatcherProvider(),
+    private val errorResolver: ErrorResolver = DefaultErrorResolver()
 ) : LaunchListMVP.Presenter {
 
     private var view: LaunchListMVP.View? = null
@@ -28,7 +31,7 @@ class LaunchListPresenter(
         if (result.hasResult()) {
             view?.displayLaunches(result.result())
         } else {
-            view?.displayError(result.error())
+            view?.displayError(errorResolver.findErrorMessageResId(result.error()))
         }
     }
 
