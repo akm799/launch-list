@@ -27,7 +27,7 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view).displayLaunches(launches)
-        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(0))
+        Mockito.verify(view, Mockito.never()).displayError(Mockito.anyInt())
     }
 
     @Test
@@ -65,6 +65,6 @@ class LaunchListPresenterTest {
         underTest.listLaunches(type)
 
         Mockito.verify(view, Mockito.never()).displayLaunches(KMockito.any(emptyList()))
-        Mockito.verify(view, Mockito.never()).displayError(KMockito.any(0))
+        Mockito.verify(view, Mockito.never()).displayError(Mockito.anyInt())
     }
 }

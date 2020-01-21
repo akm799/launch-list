@@ -11,7 +11,7 @@ class DefaultErrorResolver : ErrorResolver {
 
     override fun findErrorMessageResId(error: Throwable): Int {
         return when (error) {
-            is HttpException -> co.uk.akm.test.launchlistcr.util.error.findErrorResId(error)
+            is HttpException -> findErrorResId(error)
             is UnknownHostException -> R.string.network_error
             is SocketException -> R.string.network_error
             is SocketTimeoutException -> R.string.timeout_error
