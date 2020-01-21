@@ -2,6 +2,7 @@ package co.uk.akm.test.launchlistcr.di
 
 import co.uk.akm.test.launchlistcr.BuildConfig
 import co.uk.akm.test.launchlistcr.data.api.LaunchService
+import co.uk.akm.test.launchlistcr.data.db.LaunchDatabase
 import co.uk.akm.test.launchlistcr.data.repo.impl.PersistentLaunchRepository
 import co.uk.akm.test.launchlistcr.data.source.LaunchCache
 import co.uk.akm.test.launchlistcr.data.source.LaunchDataSource
@@ -28,7 +29,9 @@ val appModule = module {
 
     single { (get() as Retrofit).create(LaunchService::class.java) }
 
-    single<LaunchCache> { DbLaunchCache(androidApplication(), BuildConfig.CACHE_EXPIRY_SECS) }
+    single { LaunchDatabase.singleInstance(androidApplication()).launchDao() }
+
+    single<LaunchCache> { DbLaunchCache(BuildConfig.CACHE_EXPIRY_SECS, get()) }
 
     single<LaunchDataSource> { RemoteLaunchDataSource(get()) }
 
