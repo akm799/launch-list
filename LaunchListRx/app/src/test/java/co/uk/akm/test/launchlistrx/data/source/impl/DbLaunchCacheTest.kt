@@ -1,13 +1,11 @@
 package co.uk.akm.test.launchlistrx.data.source.impl
 
-import android.app.Application
 import co.uk.akm.test.launchlistrx.data.db.LaunchDao
 import co.uk.akm.test.launchlistrx.data.db.LaunchDatabase
 import co.uk.akm.test.launchlistrx.helper.KMockito
 import co.uk.akm.test.launchlistrx.helper.apiEntities
 import co.uk.akm.test.launchlistrx.helper.dbEntities
 import co.uk.akm.test.launchlistrx.helper.matchers.custom.LaunchDbEntityListMatcher
-import co.uk.akm.test.launchlistrx.helper.providers.TestDbProvider
 import co.uk.akm.test.launchlistrx.helper.providers.TestTimeProvider
 import io.reactivex.Single
 import org.junit.Assert
@@ -22,22 +20,18 @@ class DbLaunchCacheTest {
 
     @Test
     fun shouldNotHaveLaunchesWhenEmpty() {
-        val app = Mockito.mock(Application::class.java)
-
         val dao = Mockito.mock(LaunchDao::class.java)
         Mockito.`when`(dao.getTimeStampCount(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(0))
 
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
 
-        val underTest = DbLaunchCache(app, 30, dbProvider = TestDbProvider(db))
+        val underTest = DbLaunchCache(30, dao)
         Assert.assertFalse(underTest.hasLaunches().blockingGet())
     }
 
     @Test
     fun shouldNotHaveLaunchesWhenExpired() {
-        val app = Mockito.mock(Application::class.java)
-
         val now = 100*SECS_TO_MILLIS
         val expiryTimeInSecs = 10
         val expiredCacheTime = now - (expiryTimeInSecs + expiryTimeInSecs)*SECS_TO_MILLIS
@@ -49,14 +43,12 @@ class DbLaunchCacheTest {
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
 
-        val underTest = DbLaunchCache(app, expiryTimeInSecs, TestDbProvider(db), TestTimeProvider(now))
+        val underTest = DbLaunchCache(expiryTimeInSecs, dao, TestTimeProvider(now))
         Assert.assertFalse(underTest.hasLaunches().blockingGet())
     }
 
     @Test
     fun shouldNotHaveLaunches() {
-        val app = Mockito.mock(Application::class.java)
-
         val now = 100*SECS_TO_MILLIS
         val expiryTimeInSecs = 10
         val validCacheTime = now - (expiryTimeInSecs/2)*SECS_TO_MILLIS
@@ -68,14 +60,12 @@ class DbLaunchCacheTest {
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
 
-        val underTest = DbLaunchCache(app, expiryTimeInSecs, TestDbProvider(db), TestTimeProvider(now))
+        val underTest = DbLaunchCache(expiryTimeInSecs, dao, TestTimeProvider(now))
         Assert.assertTrue(underTest.hasLaunches().blockingGet())
     }
 
     @Test
     fun shouldGetLaunches() {
-        val app = Mockito.mock(Application::class.java)
-
         val expected = dbEntities(42)
         val dao = Mockito.mock(LaunchDao::class.java)
         Mockito.`when`(dao.getLaunches()).thenReturn(Single.just(expected))
@@ -83,7 +73,7 @@ class DbLaunchCacheTest {
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
 
-        val underTest = DbLaunchCache(app, 30, dbProvider = TestDbProvider(db))
+        val underTest = DbLaunchCache(30, dao)
         val actual = underTest.getLaunches().blockingGet()
 
         Assert.assertEquals(expected, actual)
@@ -91,8 +81,6 @@ class DbLaunchCacheTest {
 
     @Test
     fun shouldCacheLaunches() {
-        val app = Mockito.mock(Application::class.java)
-
         val flightNumber = 42
         val flightNumbers = listOf(flightNumber)
         val entities = apiEntities(flightNumber)
@@ -101,7 +89,7 @@ class DbLaunchCacheTest {
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
 
-        val underTest = DbLaunchCache(app, 30, dbProvider = TestDbProvider(db))
+        val underTest = DbLaunchCache(30, dao)
         underTest.cacheLaunches(entities)
 
         Mockito.verify(dao).cacheLaunches(KMockito.argThat(LaunchDbEntityListMatcher(flightNumbers)))

@@ -3,6 +3,8 @@ package co.uk.akm.test.launchlistrx.presentation.presenter
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.presentation.LaunchListMVP
+import co.uk.akm.test.launchlistrx.util.error.DefaultErrorResolver
+import co.uk.akm.test.launchlistrx.util.error.ErrorResolver
 import co.uk.akm.test.launchlistrx.util.providers.rx.DefaultSchedulerProvider
 import co.uk.akm.test.launchlistrx.util.providers.rx.SchedulerProvider
 import io.reactivex.SingleObserver
@@ -10,7 +12,8 @@ import io.reactivex.disposables.Disposable
 
 class LaunchListPresenter(
     private val useCase: ListLaunchesUseCase,
-    private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider()
+    private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider(),
+    private val errorResolver: ErrorResolver = DefaultErrorResolver()
 ) : LaunchListMVP.Presenter {
 
     private var view: LaunchListMVP.View? = null
@@ -49,7 +52,7 @@ class LaunchListPresenter(
 
         override fun onError(e: Throwable) {
             requestInProgress = null
-            view?.displayError(e)
+            view?.displayError(errorResolver.findErrorResId(e))
         }
     }
 }

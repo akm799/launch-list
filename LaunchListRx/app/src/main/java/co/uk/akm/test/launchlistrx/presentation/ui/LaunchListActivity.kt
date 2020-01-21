@@ -2,14 +2,12 @@ package co.uk.akm.test.launchlistrx.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import co.uk.akm.test.launchlistrx.BuildConfig
 import co.uk.akm.test.launchlistrx.R
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.presentation.LaunchListMVP
 import co.uk.akm.test.launchlistrx.presentation.ui.list.LaunchListAdapter
-import co.uk.akm.test.launchlistrx.util.error.findErrorResId
 import kotlinx.android.synthetic.main.activity_launch_list.*
 import org.koin.android.ext.android.inject
 
@@ -59,8 +57,7 @@ class LaunchListActivity : AppCompatActivity(), LaunchListMVP.View {
         (launchList.adapter as LaunchListAdapter).submitList(launches)
     }
 
-    override fun displayError(error: Throwable) {
-        Log.e(javaClass.name, "Error: ${error.message}", error)
-        launchesRequestStatus.showError(findErrorResId(error))
+    override fun displayError(errorResId: Int) {
+        launchesRequestStatus.showError(errorResId)
     }
 }

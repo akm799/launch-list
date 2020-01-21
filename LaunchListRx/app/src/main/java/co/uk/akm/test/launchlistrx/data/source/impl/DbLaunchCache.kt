@@ -1,26 +1,22 @@
 package co.uk.akm.test.launchlistrx.data.source.impl
 
-import android.app.Application
+import co.uk.akm.test.launchlistrx.data.db.LaunchDao
 import co.uk.akm.test.launchlistrx.data.entity.LaunchEntity
 import co.uk.akm.test.launchlistrx.data.entity.db.LaunchDbEntity
 import co.uk.akm.test.launchlistrx.data.source.LaunchCache
-import co.uk.akm.test.launchlistrx.util.providers.db.DbProvider
-import co.uk.akm.test.launchlistrx.util.providers.db.DefaultDbProvider
 import co.uk.akm.test.launchlistrx.util.providers.time.DefaultTimeProvider
 import co.uk.akm.test.launchlistrx.util.providers.time.TimeProvider
 import io.reactivex.Single
 
 class DbLaunchCache(
-    app: Application,
     expiryTimeInSecs: Int,
-    dbProvider: DbProvider = DefaultDbProvider(),
+    private val dao: LaunchDao,
     private val timeProvider: TimeProvider = DefaultTimeProvider()
 ) : LaunchCache {
     private companion object {
         const val SECS_TO_MILLIS = 1000L
     }
 
-    private val dao = dbProvider.dbInstance(app).launchDao()
     private val expiryTimeInMillis = expiryTimeInSecs*SECS_TO_MILLIS
 
     override fun hasLaunches(): Single<Boolean> {
