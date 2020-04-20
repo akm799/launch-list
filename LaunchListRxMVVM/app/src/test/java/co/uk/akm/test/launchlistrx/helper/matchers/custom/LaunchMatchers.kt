@@ -3,7 +3,6 @@ package co.uk.akm.test.launchlistrx.helper.matchers.custom
 import co.uk.akm.test.launchlistrx.data.entity.db.LaunchDbEntity
 import co.uk.akm.test.launchlistrx.data.entity.server.LaunchApiEntity
 import co.uk.akm.test.launchlistrx.domain.model.Launch
-import co.uk.akm.test.launchlistrx.view.viewmodel.CallResult
 
 
 class LaunchDbEntityListMatcher(expectedFlightNumbers: List<Int>) : AbstractLaunchListMatcher<LaunchDbEntity>(expectedFlightNumbers) {
