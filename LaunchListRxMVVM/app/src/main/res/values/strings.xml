@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LaunchListRx</string>
+    <string name="app_name">LaunchListRxMVVM</string>
 
     <string name="listTitle">Falcon 9 Launches</string>
     <string name="mission_patch_description">Mission Patch</string>
