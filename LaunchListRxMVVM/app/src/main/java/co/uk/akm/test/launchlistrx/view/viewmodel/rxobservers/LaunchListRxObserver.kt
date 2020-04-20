@@ -1,11 +1,13 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel
+package co.uk.akm.test.launchlistrx.view.viewmodel.rxobservers
 
 import androidx.lifecycle.MutableLiveData
 import co.uk.akm.test.launchlistrx.domain.model.Launch
+import co.uk.akm.test.launchlistrx.view.viewmodel.CallResult
+import co.uk.akm.test.launchlistrx.view.viewmodel.LaunchListViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 
-class LaunchRxObserver (
+class LaunchListRxObserver (
     private val parent: LaunchListViewModel,
     private val liveData: MutableLiveData<CallResult<List<Launch>>>
 ): SingleObserver<List<Launch>> {

@@ -1,6 +1,7 @@
 package co.uk.akm.test.launchlistrx.view.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.model.Launch
@@ -8,22 +9,25 @@ import co.uk.akm.test.launchlistrx.util.providers.livedata.DefaultLiveDataProvid
 import co.uk.akm.test.launchlistrx.util.providers.livedata.LiveDataProvider
 import co.uk.akm.test.launchlistrx.util.providers.rx.DefaultSchedulerProvider
 import co.uk.akm.test.launchlistrx.util.providers.rx.SchedulerProvider
+import co.uk.akm.test.launchlistrx.view.viewmodel.rxobservers.LaunchListRxObserver
 import io.reactivex.disposables.Disposable
 
 class LaunchListViewModel(
     private val useCase: ListLaunchesUseCase,
     private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider(),
-    private val liveDataProvider: LiveDataProvider = DefaultLiveDataProvider()
+    liveDataProvider: LiveDataProvider = DefaultLiveDataProvider()
 ) : ViewModel() {
+
+    private val launchListLiveData: MutableLiveData<CallResult<List<Launch>>> = liveDataProvider.liveDataInstance()
 
     private var requestInProgress: Disposable? = null
 
     fun listLaunches(type: String): LiveData<CallResult<List<Launch>>> {
-        return liveDataProvider.liveDataInstance<List<Launch>>().apply {
+        return launchListLiveData.apply {
             useCase.listLaunches(type)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribe(LaunchRxObserver(this@LaunchListViewModel, this))
+                .subscribe(LaunchListRxObserver(this@LaunchListViewModel, this))
         }
     }
 
