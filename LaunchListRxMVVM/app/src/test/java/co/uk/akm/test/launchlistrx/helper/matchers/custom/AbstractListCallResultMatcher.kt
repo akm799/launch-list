@@ -1,11 +1,12 @@
 package co.uk.akm.test.launchlistrx.helper.matchers.custom
 
 import co.uk.akm.test.launchlistrx.helper.matchers.KArgumentMatcher
-import co.uk.akm.test.launchlistrx.view.viewmodel.CallResult
+import co.uk.akm.test.launchlistrx.view.viewmodel.base.CallResult
 
 abstract class AbstractListCallResultMatcher<T>(private val expected: List<T>) : KArgumentMatcher<CallResult<List<T>>>() {
 
-    override fun dummyInstance(): CallResult<List<T>> = CallResult(emptyList())
+    override fun dummyInstance(): CallResult<List<T>> =
+        CallResult(emptyList())
 
     override fun matches(argument: CallResult<List<T>>?): Boolean {
         if (argument == null) {

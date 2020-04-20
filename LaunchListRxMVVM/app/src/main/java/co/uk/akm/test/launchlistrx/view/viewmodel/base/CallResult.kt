@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel
+package co.uk.akm.test.launchlistrx.view.viewmodel.base
 
 class CallResult<T> {
     private var result: T? = null

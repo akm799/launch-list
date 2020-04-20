@@ -1,7 +1,7 @@
 package co.uk.akm.test.launchlistrx.helper.matchers.custom
 
 import co.uk.akm.test.launchlistrx.helper.matchers.KArgumentMatcher
-import co.uk.akm.test.launchlistrx.view.viewmodel.CallResult
+import co.uk.akm.test.launchlistrx.view.viewmodel.base.CallResult
 
 class ErrorCallResultMatcher<T>(
     private val expected: Throwable,
