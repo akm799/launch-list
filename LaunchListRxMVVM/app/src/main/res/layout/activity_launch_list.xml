@@ -7,14 +7,35 @@
     android:orientation="vertical"
     tools:context=".view.ui.LaunchListActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="@integer/list_title_percentage"
-        android:gravity="center"
-        android:text="@string/listTitle"
-        android:background="@drawable/border_bottom_black"
-        style="@style/LaunchText.Title"/>
+        android:orientation="vertical"
+        android:background="@drawable/border_bottom_black">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/listTitle"
+            style="@style/LaunchText.Title"/>
+
+        <TextView
+            android:id="@+id/launchSuccessPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="Launch Success Rate: 87%"/>
+
+        <TextView
+            android:id="@+id/launchMeanTimeBetween"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            tools:text="Mean Time Between Launches: 1054 hours 17 minutes 9 seconds"/>
+
+    </LinearLayout>
 
     <co.uk.akm.test.launchlistrx.util.widget.list.LinearRecyclerView
         android:id="@+id/launchList"
