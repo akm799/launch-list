@@ -79,4 +79,12 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
     override fun displayError(errorResId: Int) {
         launchesRequestStatus.showError(errorResId)
     }
+
+    override fun onDestroy() {
+        try {
+            processor.clear()
+        } finally {
+            super.onDestroy()
+        }
+    }
 }

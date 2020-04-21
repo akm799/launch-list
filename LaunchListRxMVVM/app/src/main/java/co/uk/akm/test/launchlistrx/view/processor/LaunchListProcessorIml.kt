@@ -18,7 +18,7 @@ class LaunchListProcessorIml(
 ) : LaunchListProcessor {
 
     private var view: LaunchListView? = null
-    private lateinit var observer: LaunchListViewModelObserver
+    private var observer: LaunchListViewModelObserver? = null
 
     override fun init(owner: LifecycleOwner, viewModel: LaunchViewModel) {
         observer = LaunchListViewModelObserverImpl(owner, viewModel, this)
@@ -29,7 +29,7 @@ class LaunchListProcessorIml(
     }
 
     override fun listLaunches(type: String) {
-        observer.listLaunches(type)
+        observer?.listLaunches(type)
     }
 
     override fun onLaunchesListed(list: List<Launch>) {
@@ -42,11 +42,15 @@ class LaunchListProcessorIml(
     }
 
     override fun cancel() {
-        observer.cancel()
+        observer?.cancel()
     }
 
     override fun detachView() {
         view = null
+    }
+
+    override fun clear() {
+        observer = null
     }
 
     // This method simulates some business logic.

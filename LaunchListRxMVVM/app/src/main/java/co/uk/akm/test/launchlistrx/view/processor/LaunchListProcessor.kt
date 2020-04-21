@@ -20,4 +20,6 @@ interface LaunchListProcessor {
     fun cancel()
 
     fun detachView()
+
+    fun clear()
 }
