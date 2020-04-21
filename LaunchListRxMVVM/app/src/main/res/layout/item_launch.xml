@@ -69,7 +69,7 @@
             app:layout_constraintStart_toStartOf="@id/missionName"
             app:layout_constraintTop_toBottomOf="@id/launchDate"
             style="@style/LaunchText.Attribute"
-            tools:text="@string/missionOutcome"/>
+            tools:text="@string/mission_outcome"/>
 
         <ImageView
             android:id="@+id/missionSuccessIcon"

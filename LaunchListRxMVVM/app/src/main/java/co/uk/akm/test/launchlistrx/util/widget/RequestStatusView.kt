@@ -56,7 +56,7 @@ class RequestStatusView : FrameLayout {
     }
 
     private fun buildRetryLinkText(): Spanned {
-        val text = resources.getString(R.string.retryLink)
+        val text = resources.getString(R.string.retry_link)
 
         return formatRetryLinkText(text)
     }

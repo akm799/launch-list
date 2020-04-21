@@ -45,12 +45,12 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     }
 
     private fun bindNameAndDate(resources: Resources, launch: Launch) {
-        val missionName = if (launch.hasMissionName) launch.missionName else resources.getString(R.string.unknownMissionName)
+        val missionName = if (launch.hasMissionName) launch.missionName else resources.getString(R.string.unknown_mission_name)
 
         val launchDate = if (launch.hasDate) {
-            resources.getString(R.string.launchDate, reformatAsDate(launch.date))
+            resources.getString(R.string.launch_date, reformatAsDate(launch.date))
         } else {
-            resources.getString(R.string.unknownLaunchDate)
+            resources.getString(R.string.unknown_launch_date)
         }
 
         itemView.findViewById<TextView>(R.id.missionName).text = missionName
@@ -63,13 +63,13 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         if (launch.hasSuccess) {
             val iconResId = if (launch.success) R.drawable.rocket else R.drawable.explosion
-            textView.setText(R.string.missionOutcome)
+            textView.setText(R.string.mission_outcome)
             with(imageView) {
                 setImageResource(iconResId)
                 visibility = View.VISIBLE
             }
         } else {
-            textView.setText(R.string.unknownMissionOutcome)
+            textView.setText(R.string.unknown_mission_outcome)
             with(imageView) {
                 setImageResource(0)
                 visibility = View.INVISIBLE

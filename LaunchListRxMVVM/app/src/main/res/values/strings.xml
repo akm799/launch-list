@@ -1,17 +1,17 @@
 <resources>
     <string name="app_name">LaunchListRxMVVM</string>
 
-    <string name="listTitle">Falcon 9 Launches</string>
+    <string name="list_title">Falcon 9 Launches</string>
     <string name="stats_success_percentage">Launch Success Rate: %d%%</string>
     <string name="stats_mean_time_btwn_launches">Mean Time Between Launches:\n%d hours %d minutes %d seconds</string>
     <string name="mission_patch_description">Mission Patch</string>
     <string name="mission_outcome_description">Mission Outcome</string>
 
-    <string name="launchDate">Launch date: %s</string>
-    <string name="missionOutcome">Mission outcome:</string>
-    <string name="unknownMissionName">Unknown mission name</string>
-    <string name="unknownLaunchDate">Unknown launch date</string>
-    <string name="unknownMissionOutcome">Mission outcome: unknown</string>
+    <string name="launch_date">Launch date: %s</string>
+    <string name="mission_outcome">Mission outcome:</string>
+    <string name="unknown_mission_name">Unknown mission name</string>
+    <string name="unknown_launch_date">Unknown launch date</string>
+    <string name="unknown_mission_outcome">Mission outcome: unknown</string>
 
     <string name="forbidden_error">Access error: has your token expired?</string>
     <string name="network_error">Network error: please check your network connection.</string>
@@ -19,5 +19,5 @@
     <string name="server_error">Server error: internal server error.</string>
     <string name="unknown_error">Unknown error.</string>
 
-    <string name="retryLink">&lt;u&gt;Retry&lt;/u&gt;</string>
+    <string name="retry_link">&lt;u&gt;Retry&lt;/u&gt;</string>
 </resources>
