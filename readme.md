@@ -4,12 +4,13 @@ Simple Android application that displays Falcon 9 Launch Data using the [Space X
 
 ### Import
 
-There are two Android projects in this folder:
+There are three Android projects in this folder:
 
 1. `LaunchListCR`
 2. `LaunchListRx`
+3. `LaunchListRxMVVM`
 
-Both projects are Android Studio ones. To build either project you must import it into Android Studio.
+All projects are Android Studio ones. To build any of the projects you must import it into Android Studio.
 
 ### Description
 
@@ -22,16 +23,17 @@ The application consists of a single screen. The screen displays the Falcon 9 la
 
 ### Variants
 
-There are two variants of the application:
+There are three variants of the application:
 
-1. `LaunchListCR`: A variant that uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html)
-2. `LaunchListRx`: A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava)
+1. `LaunchListCR`    : A variant that uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and follows the MVP design pattern.
+2. `LaunchListRx`    : A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava) and follows the MVP design pattern.
+3. `LaunchListRxMVVM`: A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava) but follows the MVVM design pattern.
 
-Both variants behave identically. They were chosen to demonstrate the use of these two frameworks.
+All variants behave identically. They were chosen to demonstrate the use of these two frameworks ([Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and [RxJava2](https://github.com/ReactiveX/RxJava)) and the MVP and MVVM design patterns.
 
 ### Design
 
-The design adopted follows the MVP design pattern. It is too complex for the simple functionality required, but it was chosen to illustrate
+The design adopted follows the MVP and MVVM design patterns. It is too complex for the simple functionality required, but it was chosen to illustrate
 the design patterns and best practices followed in larger scale and more demanding applications.
   
 ### Configuration
