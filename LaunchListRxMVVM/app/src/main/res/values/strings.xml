@@ -3,7 +3,7 @@
 
     <string name="list_title">Falcon 9 Launches</string>
     <string name="stats_success_percentage">Launch Success Rate: %d%%</string>
-    <string name="stats_mean_time_btwn_launches">Mean Time Between Launches:\n%d hours %d minutes %d seconds</string>
+    <string name="stats_mean_time_btwn_launches">Mean Time Between Launches:\n%d days %d hours %d minutes %d seconds</string>
     <string name="mission_patch_description">Mission Patch</string>
     <string name="mission_outcome_description">Mission Outcome</string>
 

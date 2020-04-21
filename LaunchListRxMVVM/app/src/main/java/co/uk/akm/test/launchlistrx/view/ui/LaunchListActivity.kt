@@ -72,6 +72,7 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
         launchSuccessPercentage.text = getStringWithArgsInBold(R.string.stats_success_percentage, statistics.successPercentage)
         launchMeanTimeBetween.text = getStringWithArgsInBold(
             R.string.stats_mean_time_btwn_launches,
+            statistics.meanTimeBetweenLaunches.days,
             statistics.meanTimeBetweenLaunches.hours,
             statistics.meanTimeBetweenLaunches.minutes,
             statistics.meanTimeBetweenLaunches.seconds)

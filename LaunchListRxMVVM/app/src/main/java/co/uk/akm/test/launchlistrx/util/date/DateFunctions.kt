@@ -11,6 +11,7 @@ private const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX"
 private const val MILLIS_IN_SEC = 1000L
 private const val MILLIS_IN_MIN = 60*MILLIS_IN_SEC
 private const val MILLIS_IN_HOUR = 60*MILLIS_IN_MIN
+private const val MILLIS_IN_DAY = 24* MILLIS_IN_HOUR
 
 fun formatInUtc(timestamp: Long): String {
     return SimpleDateFormat(DATE_TIME_FORMAT, Locale.UK).apply { timeZone = utc }.format(Date(timestamp))
@@ -27,12 +28,16 @@ fun parseDate(datetimeString: String): Date {
 }
 
 fun computeTimeInterval(millis: Long): TimeInterval {
-    val hours = millis/MILLIS_IN_HOUR
+    val days = millis/MILLIS_IN_DAY
+    val millisInDays = days*MILLIS_IN_DAY
+
+    val hours = (millis - millisInDays)/MILLIS_IN_HOUR
     val millisInHours = hours*MILLIS_IN_HOUR
 
-    val minutes = (millis - millisInHours)/MILLIS_IN_MIN
+    val minutes = (millis - millisInDays - millisInHours)/MILLIS_IN_MIN
+    val millisInMinutes = minutes*MILLIS_IN_MIN
 
-    val seconds = (millis - millisInHours - minutes*MILLIS_IN_MIN)/MILLIS_IN_SEC
+    val seconds = (millis - millisInDays - millisInHours - millisInMinutes)/MILLIS_IN_SEC
 
-    return TimeInterval(hours.toInt(), minutes.toInt(), seconds.toInt())
+    return TimeInterval(days.toInt(), hours.toInt(), minutes.toInt(), seconds.toInt())
 }
