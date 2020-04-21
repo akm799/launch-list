@@ -15,13 +15,14 @@ import org.mockito.Mockito
 class DbLaunchCacheTest {
     private companion object {
         const val SECS_TO_MILLIS = 1000L
-        const val LAUNCH_ENTITY_NAME = "launch"
+        const val LAUNCH_LIST_ENTITY_NAME = "launch_list"
+        const val LAUNCH_DETAILS_ENTITY_NAME_PREFIX = "launch_details_"
     }
 
     @Test
     fun shouldNotHaveLaunchesWhenEmpty() {
         val dao = Mockito.mock(LaunchDao::class.java)
-        Mockito.`when`(dao.getTimeStampCount(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(0))
+        Mockito.`when`(dao.getTimeStampCount(LAUNCH_LIST_ENTITY_NAME)).thenReturn(Single.just(0))
 
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
@@ -37,8 +38,8 @@ class DbLaunchCacheTest {
         val expiredCacheTime = now - (expiryTimeInSecs + expiryTimeInSecs)*SECS_TO_MILLIS
 
         val dao = Mockito.mock(LaunchDao::class.java)
-        Mockito.`when`(dao.getTimeStampCount(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(1))
-        Mockito.`when`(dao.getTimeStamp(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(expiredCacheTime))
+        Mockito.`when`(dao.getTimeStampCount(LAUNCH_LIST_ENTITY_NAME)).thenReturn(Single.just(1))
+        Mockito.`when`(dao.getTimeStamp(LAUNCH_LIST_ENTITY_NAME)).thenReturn(Single.just(expiredCacheTime))
 
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
@@ -54,8 +55,8 @@ class DbLaunchCacheTest {
         val validCacheTime = now - (expiryTimeInSecs/2)*SECS_TO_MILLIS
 
         val dao = Mockito.mock(LaunchDao::class.java)
-        Mockito.`when`(dao.getTimeStampCount(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(1))
-        Mockito.`when`(dao.getTimeStamp(LAUNCH_ENTITY_NAME)).thenReturn(Single.just(validCacheTime))
+        Mockito.`when`(dao.getTimeStampCount(LAUNCH_LIST_ENTITY_NAME)).thenReturn(Single.just(1))
+        Mockito.`when`(dao.getTimeStamp(LAUNCH_LIST_ENTITY_NAME)).thenReturn(Single.just(validCacheTime))
 
         val db = Mockito.mock(LaunchDatabase::class.java)
         Mockito.`when`(db.launchDao()).thenReturn(dao)
