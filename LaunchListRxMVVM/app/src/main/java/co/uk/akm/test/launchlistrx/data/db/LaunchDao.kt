@@ -8,7 +8,8 @@ import io.reactivex.Single
 @Dao
 abstract class LaunchDao {
     private companion object {
-        const val LAUNCH_ENTITY_NAME = "launch"
+        const val LAUNCH_LIST_ENTITY_NAME = "launch_list"
+        const val LAUNCH_DETAILS_ENTITY_NAME_PREFIX = "launch_details_"
     }
 
     @Query("SELECT count(*) FROM timestamps WHERE entity_name = :entityName")
@@ -32,16 +33,16 @@ abstract class LaunchDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertTimeStamp(timestamp: TimeStampEntity) // Cannot return anything from here due to a room-rxjava2 bug.
 
-    fun hasLaunchesCacheTime(): Single<Boolean> = getTimeStampCount(LAUNCH_ENTITY_NAME).map { it == 1 }
+    fun hasLaunchesCacheTime(): Single<Boolean> = getTimeStampCount(LAUNCH_LIST_ENTITY_NAME).map { it == 1 }
 
-    fun getLaunchesCacheTime(): Single<Long> = getTimeStamp(LAUNCH_ENTITY_NAME)
+    fun getLaunchesCacheTime(): Single<Long> = getTimeStamp(LAUNCH_LIST_ENTITY_NAME)
 
     @Transaction
     open fun cacheLaunches(launches: List<LaunchDbEntity>) {
         deleteLaunches()
         insertLaunches(launches)
 
-        deleteTimeStamps(LAUNCH_ENTITY_NAME)
-        insertTimeStamp(TimeStampEntity(LAUNCH_ENTITY_NAME, System.currentTimeMillis()))
+        deleteTimeStamps(LAUNCH_LIST_ENTITY_NAME)
+        insertTimeStamp(TimeStampEntity(LAUNCH_LIST_ENTITY_NAME, System.currentTimeMillis()))
     }
 }
