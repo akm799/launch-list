@@ -32,7 +32,7 @@ fun computeTimeInterval(millis: Long): TimeInterval {
 
     val minutes = (millis - millisInHours)/MILLIS_IN_MIN
 
-    val seconds = (millis - millisInHours - minutes*MILLIS_IN_MIN)/ MILLIS_IN_SEC
+    val seconds = (millis - millisInHours - minutes*MILLIS_IN_MIN)/MILLIS_IN_SEC
 
     return TimeInterval(hours.toInt(), minutes.toInt(), seconds.toInt())
 }

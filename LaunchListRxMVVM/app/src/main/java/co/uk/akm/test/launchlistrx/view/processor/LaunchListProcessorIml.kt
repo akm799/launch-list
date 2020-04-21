@@ -67,11 +67,11 @@ class LaunchListProcessorIml(
     private fun findMeanTimeBetweenLaunches(list: List<Launch>): TimeInterval {
         val launchTimes = list.filter { it.hasDate }.map { parseDate(it.date).time }
 
-        var sum = 0L
+        var totalMillis = 0L
         for (i in 1 until launchTimes.size) {
-            sum += Math.abs(launchTimes[i] - launchTimes[i - 1])
+            totalMillis += Math.abs(launchTimes[i] - launchTimes[i - 1])
         }
 
-        return computeTimeInterval(sum/launchTimes.size)
+        return computeTimeInterval(totalMillis/launchTimes.size)
     }
 }
