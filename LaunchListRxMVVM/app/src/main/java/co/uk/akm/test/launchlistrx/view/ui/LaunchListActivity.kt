@@ -7,6 +7,7 @@ import co.uk.akm.test.launchlistrx.BuildConfig
 import co.uk.akm.test.launchlistrx.R
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchListStats
+import co.uk.akm.test.launchlistrx.util.getStringWithArgsInBold
 import co.uk.akm.test.launchlistrx.view.processor.LaunchListProcessor
 import co.uk.akm.test.launchlistrx.view.ui.list.LaunchListAdapter
 import co.uk.akm.test.launchlistrx.view.ui.list.LaunchListView
@@ -68,8 +69,8 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
     }
 
     private fun showStatistics(statistics: LaunchListStats) {
-        launchSuccessPercentage.text = getString(R.string.stats_success_percentage, statistics.successPercentage)
-        launchMeanTimeBetween.text = getString(
+        launchSuccessPercentage.text = getStringWithArgsInBold(R.string.stats_success_percentage, statistics.successPercentage)
+        launchMeanTimeBetween.text = getStringWithArgsInBold(
             R.string.stats_mean_time_btwn_launches,
             statistics.meanTimeBetweenLaunches.hours,
             statistics.meanTimeBetweenLaunches.minutes,
