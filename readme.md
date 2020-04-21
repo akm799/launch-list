@@ -25,11 +25,11 @@ The application consists of a single screen. The screen displays the Falcon 9 la
 
 There are three variants of the application:
 
-1. `LaunchListCR`    : A variant that uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and follows the MVP design pattern.
-2. `LaunchListRx`    : A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava) and follows the MVP design pattern.
+1. `LaunchListCR`: A variant that uses [Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and follows the MVP design pattern.
+2. `LaunchListRx`: A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava) and follows the MVP design pattern.
 3. `LaunchListRxMVVM`: A variant that uses [RxJava2](https://github.com/ReactiveX/RxJava) but follows the MVVM design pattern.
 
-All variants behave identically. They were chosen to demonstrate the use of these two frameworks ([Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and [RxJava2](https://github.com/ReactiveX/RxJava)) and the MVP and MVVM design patterns.
+All variants behave identically. They were chosen to demonstrate the use of these two frameworks ([Kotlin Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) and [RxJava2](https://github.com/ReactiveX/RxJava)) as well as the MVP and MVVM design patterns.
 
 ### Design
 
