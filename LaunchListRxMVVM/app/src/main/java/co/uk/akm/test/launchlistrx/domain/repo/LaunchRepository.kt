@@ -8,5 +8,5 @@ interface LaunchRepository {
 
     fun getLaunches(): Single<List<Launch>>
 
-    fun getLaunchDetails(flightNumber: Int): Single<LaunchDetails?>
+    fun getLaunchDetails(flightNumber: Int): Single<LaunchDetails>
 }

@@ -2,6 +2,7 @@ package co.uk.akm.test.launchlistrx.domain.interactor.impl
 
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.model.Launch
+import co.uk.akm.test.launchlistrx.domain.model.LaunchDetails
 import co.uk.akm.test.launchlistrx.domain.repo.LaunchRepository
 import io.reactivex.Single
 
@@ -17,4 +18,6 @@ class ListLaunchesUseCaseImpl(private val repository: LaunchRepository) : ListLa
             launches.filter { it.type == type }
         }
     }
+
+    override fun getLaunchDetails(flightNumber: Int): Single<LaunchDetails> = repository.getLaunchDetails(flightNumber)
 }

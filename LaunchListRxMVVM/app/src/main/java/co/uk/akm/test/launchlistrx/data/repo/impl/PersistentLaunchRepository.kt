@@ -4,6 +4,7 @@ import co.uk.akm.test.launchlistrx.data.entity.LaunchDetailsEntity
 import co.uk.akm.test.launchlistrx.data.entity.LaunchEntity
 import co.uk.akm.test.launchlistrx.data.source.LaunchCache
 import co.uk.akm.test.launchlistrx.data.source.LaunchDataSource
+import co.uk.akm.test.launchlistrx.domain.model.InvalidLaunchException
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchDetails
 import co.uk.akm.test.launchlistrx.domain.model.impl.LaunchData
@@ -11,7 +12,6 @@ import co.uk.akm.test.launchlistrx.domain.model.impl.LaunchDetailsData
 import co.uk.akm.test.launchlistrx.domain.repo.LaunchRepository
 import co.uk.akm.test.launchlistrx.util.date.formatInUtc
 import co.uk.akm.test.launchlistrx.util.rx.readOrFetchEntity
-import co.uk.akm.test.launchlistrx.util.rx.readOrTryToFetchEntity
 import io.reactivex.Single
 
 class PersistentLaunchRepository(
@@ -49,21 +49,21 @@ class PersistentLaunchRepository(
         return LaunchData(flightNumber, launchType, mission_name, launchDate, launch_success, missionPatch)
     }
 
-    override fun getLaunchDetails(flightNumber: Int): Single<LaunchDetails?> {
+    override fun getLaunchDetails(flightNumber: Int): Single<LaunchDetails> {
         return readOfFetchLaunchDetails(flightNumber).map { it.toLaunchDetails() }
     }
 
-    private fun readOfFetchLaunchDetails(flightNumber: Int): Single<LaunchDetailsEntity?> {
+    private fun readOfFetchLaunchDetails(flightNumber: Int): Single<LaunchDetailsEntity> {
         val hasLaunchDetails = { localSource.hasLaunchDetails(flightNumber) }
         val readLaunchDetails = { localSource.getLaunchDetails(flightNumber) }
         val fetchLaunchDetails = { fetchValidLaunchDetails(flightNumber) }
         val cacheLaunchDetails = { launchDetails: LaunchDetailsEntity ->  localSource.cacheLaunchDetails(launchDetails) }
 
-        return readOrTryToFetchEntity(hasLaunchDetails, readLaunchDetails, fetchLaunchDetails, cacheLaunchDetails)
+        return readOrFetchEntity(hasLaunchDetails, readLaunchDetails, fetchLaunchDetails, cacheLaunchDetails)
     }
 
-    private fun fetchValidLaunchDetails(flightNumber: Int): Single<LaunchDetailsEntity?> {
-        return remoteSource.getLaunchDetails(flightNumber).map { if (it.hasFlightNumberAndType()) it else null  }
+    private fun fetchValidLaunchDetails(flightNumber: Int): Single<LaunchDetailsEntity> {
+        return remoteSource.getLaunchDetails(flightNumber).map { if (it.hasFlightNumberAndType()) it else throw  InvalidLaunchException() }
     }
 
     private fun LaunchDetailsEntity.hasFlightNumberAndType(): Boolean {
