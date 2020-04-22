@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel
+package co.uk.akm.test.launchlistrx.app.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,9 +8,9 @@ import co.uk.akm.test.launchlistrx.util.providers.livedata.DefaultLiveDataProvid
 import co.uk.akm.test.launchlistrx.util.providers.livedata.LiveDataProvider
 import co.uk.akm.test.launchlistrx.util.providers.rx.DefaultSchedulerProvider
 import co.uk.akm.test.launchlistrx.util.providers.rx.SchedulerProvider
-import co.uk.akm.test.launchlistrx.view.viewmodel.base.BaseViewModel
-import co.uk.akm.test.launchlistrx.view.viewmodel.base.CallResult
-import co.uk.akm.test.launchlistrx.view.viewmodel.rxobservers.LaunchListRxObserver
+import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.base.CallResult
+import co.uk.akm.test.launchlistrx.app.viewmodel.rxobservers.LaunchListRxObserver
 
 class LaunchViewModel(
     private val useCase: ListLaunchesUseCase,

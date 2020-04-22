@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel
+package co.uk.akm.test.launchlistrx.app.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
@@ -8,7 +8,7 @@ import co.uk.akm.test.launchlistrx.helper.matchers.custom.ErrorCallResultMatcher
 import co.uk.akm.test.launchlistrx.helper.matchers.custom.LaunchListCallResultMatcher
 import co.uk.akm.test.launchlistrx.helper.providers.TestLiveDataProvider
 import co.uk.akm.test.launchlistrx.helper.providers.TestSchedulerProvider
-import co.uk.akm.test.launchlistrx.view.viewmodel.base.CallResult
+import co.uk.akm.test.launchlistrx.app.viewmodel.base.CallResult
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
 import org.junit.Test

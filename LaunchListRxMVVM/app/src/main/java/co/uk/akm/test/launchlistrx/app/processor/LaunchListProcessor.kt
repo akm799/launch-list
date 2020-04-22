@@ -1,9 +1,9 @@
-package co.uk.akm.test.launchlistrx.view.processor
+package co.uk.akm.test.launchlistrx.app.processor
 
 import androidx.lifecycle.LifecycleOwner
 import co.uk.akm.test.launchlistrx.domain.model.Launch
-import co.uk.akm.test.launchlistrx.view.ui.list.LaunchListView
-import co.uk.akm.test.launchlistrx.view.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
 
 interface LaunchListProcessor {
 

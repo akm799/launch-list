@@ -1,9 +1,9 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel.rxobservers
+package co.uk.akm.test.launchlistrx.app.viewmodel.rxobservers
 
 import androidx.lifecycle.MutableLiveData
 import co.uk.akm.test.launchlistrx.domain.model.Launch
-import co.uk.akm.test.launchlistrx.view.viewmodel.base.CallResult
-import co.uk.akm.test.launchlistrx.view.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.base.CallResult
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 

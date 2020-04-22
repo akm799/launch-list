@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.ui.list
+package co.uk.akm.test.launchlistrx.app.ui.list
 
 import androidx.recyclerview.widget.DiffUtil
 import co.uk.akm.test.launchlistrx.domain.model.Launch

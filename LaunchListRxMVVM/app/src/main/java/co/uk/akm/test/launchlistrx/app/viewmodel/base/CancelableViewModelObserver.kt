@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.viewmodel.base
+package co.uk.akm.test.launchlistrx.app.viewmodel.base
 
 interface CancelableViewModelObserver {
 

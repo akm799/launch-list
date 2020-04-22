@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.view.processor
+package co.uk.akm.test.launchlistrx.app.processor
 
 import androidx.lifecycle.LifecycleOwner
 import co.uk.akm.test.launchlistrx.domain.model.Launch
@@ -8,10 +8,10 @@ import co.uk.akm.test.launchlistrx.util.date.computeTimeInterval
 import co.uk.akm.test.launchlistrx.util.date.parseDate
 import co.uk.akm.test.launchlistrx.util.error.DefaultErrorResolver
 import co.uk.akm.test.launchlistrx.util.error.ErrorResolver
-import co.uk.akm.test.launchlistrx.view.ui.list.LaunchListView
-import co.uk.akm.test.launchlistrx.view.viewmodel.LaunchViewModel
-import co.uk.akm.test.launchlistrx.view.viewmodel.observers.LaunchListViewModelObserver
-import co.uk.akm.test.launchlistrx.view.viewmodel.observers.LaunchListViewModelObserverImpl
+import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserver
+import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserverImpl
 
 class LaunchListProcessorIml(
     private val errorResolver: ErrorResolver = DefaultErrorResolver()
