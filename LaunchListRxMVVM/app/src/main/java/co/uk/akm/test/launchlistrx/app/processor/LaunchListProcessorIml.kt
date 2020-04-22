@@ -9,9 +9,9 @@ import co.uk.akm.test.launchlistrx.util.date.parseDate
 import co.uk.akm.test.launchlistrx.util.error.DefaultErrorResolver
 import co.uk.akm.test.launchlistrx.util.error.ErrorResolver
 import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
-import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserver
-import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserverImpl
+import co.uk.akm.test.launchlistrx.app.viewmodel.observers.impl.LaunchListViewModelObserverImpl
 
 class LaunchListProcessorIml(
     private val errorResolver: ErrorResolver = DefaultErrorResolver()
@@ -20,8 +20,13 @@ class LaunchListProcessorIml(
     private var view: LaunchListView? = null
     private var observer: LaunchListViewModelObserver? = null
 
-    override fun init(owner: LifecycleOwner, viewModel: LaunchViewModel) {
-        observer = LaunchListViewModelObserverImpl(owner, viewModel, this)
+    override fun init(owner: LifecycleOwner, viewModel: LaunchListViewModel) {
+        observer =
+            LaunchListViewModelObserverImpl(
+                owner,
+                viewModel,
+                this
+            )
     }
 
     override fun attachView(view: LaunchListView) {

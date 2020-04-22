@@ -15,7 +15,7 @@ import org.junit.Test
 import org.mockito.Mockito
 import java.lang.Exception
 
-class LaunchViewModelTest {
+class LaunchListViewModelTest {
     private val type = "falcon9"
     private val launches = listOf<Launch>(LaunchData(42, type, null, null, null, null))
 
@@ -27,7 +27,7 @@ class LaunchViewModelTest {
         val io = TestScheduler()
         val ui = TestScheduler()
         val liveData: MutableLiveData<CallResult<List<Launch>>> = Mockito.mock(MutableLiveData::class.java) as MutableLiveData<CallResult<List<Launch>>>
-        val underTest = LaunchViewModel(useCase, TestSchedulerProvider(io, ui), TestLiveDataProvider(liveData))
+        val underTest = LaunchListViewModel(useCase, TestSchedulerProvider(io, ui), TestLiveDataProvider(liveData))
 
         underTest.listLaunches(type)
         io.triggerActions()
@@ -46,7 +46,7 @@ class LaunchViewModelTest {
         val io = TestScheduler()
         val ui = TestScheduler()
         val liveData: MutableLiveData<CallResult<List<Launch>>> = Mockito.mock(MutableLiveData::class.java) as MutableLiveData<CallResult<List<Launch>>>
-        val underTest = LaunchViewModel(useCase, TestSchedulerProvider(io, ui), TestLiveDataProvider(liveData))
+        val underTest = LaunchListViewModel(useCase, TestSchedulerProvider(io, ui), TestLiveDataProvider(liveData))
 
         underTest.listLaunches(type)
         io.triggerActions()

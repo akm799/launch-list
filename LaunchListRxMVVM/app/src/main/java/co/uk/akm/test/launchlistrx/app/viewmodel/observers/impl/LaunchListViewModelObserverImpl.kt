@@ -1,14 +1,15 @@
-package co.uk.akm.test.launchlistrx.app.viewmodel.observers
+package co.uk.akm.test.launchlistrx.app.viewmodel.observers.impl
 
 import androidx.lifecycle.LifecycleOwner
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModelObserver
-import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserver
 
 class LaunchListViewModelObserverImpl(
     private val owner: LifecycleOwner,
-    private val viewModel: LaunchViewModel,
+    private val viewModel: LaunchListViewModel,
     private val processor: LaunchListProcessor
 ) : BaseViewModelObserver<List<Launch>>(viewModel), LaunchListViewModelObserver {
 

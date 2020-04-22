@@ -14,7 +14,7 @@ import co.uk.akm.test.launchlistrx.domain.repo.LaunchRepository
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessorIml
 import co.uk.akm.test.launchlistrx.util.retrofit.retrofitInstance
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
-import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import org.koin.android.ext.koin.androidApplication
@@ -43,5 +43,5 @@ val appModule = module {
 
     single<LaunchListProcessor> { LaunchListProcessorIml() }
 
-    viewModel { LaunchViewModel(get()) }
+    viewModel { LaunchListViewModel(get()) }
 }

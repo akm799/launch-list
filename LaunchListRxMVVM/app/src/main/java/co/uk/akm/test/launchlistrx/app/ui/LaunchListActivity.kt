@@ -11,13 +11,13 @@ import co.uk.akm.test.launchlistrx.util.getStringWithArgsInBold
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
 import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListAdapter
 import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
-import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import kotlinx.android.synthetic.main.activity_launch_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaunchListActivity : AppCompatActivity(), LaunchListView {
-    private val viewModel: LaunchViewModel by viewModel()
+    private val viewModel: LaunchListViewModel by viewModel()
     private val processor: LaunchListProcessor by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {

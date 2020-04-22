@@ -3,11 +3,11 @@ package co.uk.akm.test.launchlistrx.app.processor
 import androidx.lifecycle.LifecycleOwner
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
-import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchViewModel
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 
 interface LaunchListProcessor {
 
-    fun init(owner: LifecycleOwner, viewModel: LaunchViewModel)
+    fun init(owner: LifecycleOwner, viewModel: LaunchListViewModel)
 
     fun attachView(view: LaunchListView)
 
