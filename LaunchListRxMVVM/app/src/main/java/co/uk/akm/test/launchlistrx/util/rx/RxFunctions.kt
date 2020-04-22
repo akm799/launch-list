@@ -23,6 +23,28 @@ fun <T> readOrFetchEntity(
     return isCached.invoke().flatMap(readOrFetch)
 }
 
+/**
+ * Helper function that checks if an entity is cached, and returns it from the cache if so, or tries
+ * to fetch it from a remote source, and caches it before returning it. If the remote source returns
+ * null, then nothing is cached and null is returned.
+ */
+fun <T> readOrTryToFetchEntity(
+    isCached: () -> Single<Boolean>,
+    readFromCache: () -> Single<T>,
+    fetch: () -> Single<T?>,
+    cache: (T) -> Unit
+): Single<T?> {
+    val readOrFetch: (Boolean) -> Single<T> = { cached ->
+        if (cached) {
+            readFromCache.invoke()
+        } else {
+            fetch.invoke().map { if (it != null) cacheEntity(it, cache) else null }
+        }
+    }
+
+    return isCached.invoke().flatMap(readOrFetch)
+}
+
 private fun <T> cacheEntity(entity: T, cache: (T) -> Unit): T {
     return entity.apply { cache.invoke(this) }
 }
