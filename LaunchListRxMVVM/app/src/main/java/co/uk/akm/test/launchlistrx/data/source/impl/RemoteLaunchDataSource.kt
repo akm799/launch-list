@@ -1,6 +1,7 @@
 package co.uk.akm.test.launchlistrx.data.source.impl
 
 import co.uk.akm.test.launchlistrx.data.api.LaunchService
+import co.uk.akm.test.launchlistrx.data.entity.LaunchDetailsEntity
 import co.uk.akm.test.launchlistrx.data.entity.LaunchEntity
 import co.uk.akm.test.launchlistrx.data.source.LaunchDataSource
 import io.reactivex.Single
@@ -9,5 +10,9 @@ class RemoteLaunchDataSource(private val service: LaunchService) : LaunchDataSou
 
     override fun getLaunches(): Single<List<LaunchEntity>> {
         return service.getLaunches().map { entities -> entities.map { it as LaunchEntity } }
+    }
+
+    override fun getLaunchDetails(flightNumber: Int): Single<LaunchDetailsEntity> {
+        return service.getLaunchDetails(flightNumber).map { it as LaunchDetailsEntity }
     }
 }
