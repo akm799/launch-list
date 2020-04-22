@@ -11,7 +11,7 @@ import co.uk.akm.test.launchlistrx.data.source.impl.RemoteLaunchDataSource
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.interactor.impl.ListLaunchesUseCaseImpl
 import co.uk.akm.test.launchlistrx.domain.repo.LaunchRepository
-import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessorIml
+import co.uk.akm.test.launchlistrx.app.processor.impl.LaunchListProcessorIml
 import co.uk.akm.test.launchlistrx.util.retrofit.retrofitInstance
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel

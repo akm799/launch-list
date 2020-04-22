@@ -1,4 +1,4 @@
-package co.uk.akm.test.launchlistrx.app.ui
+package co.uk.akm.test.launchlistrx.app.ui.list
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,8 +9,7 @@ import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchListStats
 import co.uk.akm.test.launchlistrx.util.getStringWithArgsInBold
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
-import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListAdapter
-import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
+import co.uk.akm.test.launchlistrx.app.ui.list.adapter.LaunchListAdapter
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import kotlinx.android.synthetic.main.activity_launch_list.*
 import org.koin.android.ext.android.inject
@@ -37,7 +36,8 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
     private fun initRecyclerView() {
         with(launchList) {
             layoutManager = LinearLayoutManager(this@LaunchListActivity)
-            adapter = LaunchListAdapter()
+            adapter =
+                LaunchListAdapter()
         }
     }
 

@@ -1,6 +1,7 @@
-package co.uk.akm.test.launchlistrx.app.processor
+package co.uk.akm.test.launchlistrx.app.processor.impl
 
 import androidx.lifecycle.LifecycleOwner
+import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchListStats
 import co.uk.akm.test.launchlistrx.domain.model.TimeInterval
@@ -15,22 +16,10 @@ import co.uk.akm.test.launchlistrx.app.viewmodel.observers.impl.LaunchListViewMo
 
 class LaunchListProcessorIml(
     private val errorResolver: ErrorResolver = DefaultErrorResolver()
-) : LaunchListProcessor {
-
-    private var view: LaunchListView? = null
-    private var observer: LaunchListViewModelObserver? = null
+) : BaseProcessorImpl<LaunchListView, LaunchListViewModel, LaunchListViewModelObserver>(),  LaunchListProcessor {
 
     override fun init(owner: LifecycleOwner, viewModel: LaunchListViewModel) {
-        observer =
-            LaunchListViewModelObserverImpl(
-                owner,
-                viewModel,
-                this
-            )
-    }
-
-    override fun attachView(view: LaunchListView) {
-        this.view = view
+        observer = LaunchListViewModelObserverImpl(owner, viewModel, this)
     }
 
     override fun listLaunches(type: String) {
@@ -44,18 +33,6 @@ class LaunchListProcessorIml(
 
     override fun onLaunchListError(t: Throwable) {
         view?.displayError(errorResolver.findErrorResId(t))
-    }
-
-    override fun cancel() {
-        observer?.cancel()
-    }
-
-    override fun detachView() {
-        view = null
-    }
-
-    override fun clear() {
-        observer = null
     }
 
     // This method simulates some business logic.
