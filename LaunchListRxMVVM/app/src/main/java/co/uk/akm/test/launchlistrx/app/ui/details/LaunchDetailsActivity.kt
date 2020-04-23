@@ -8,7 +8,7 @@ import co.uk.akm.test.launchlistrx.R
 import co.uk.akm.test.launchlistrx.app.processor.LaunchDetailsProcessor
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchDetailsViewModel
 import co.uk.akm.test.launchlistrx.domain.model.LaunchDetails
-import co.uk.akm.test.launchlistrx.util.date.reformatAsDate
+import co.uk.akm.test.launchlistrx.util.date.reformatAsDateTime
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_launch_details.*
 import org.koin.android.ext.android.inject
@@ -69,17 +69,19 @@ class LaunchDetailsActivity : AppCompatActivity(), LaunchDetailsView {
             .into(launcDetailsMissionPatch)
 
         if (launchDetails.hasDate) {
-            launchDetailsDate.text = resources.getString(R.string.launch_date, reformatAsDate(launchDetails.date))
+            launchDetailsDate.text = resources.getString(R.string.launch_date, reformatAsDateTime(launchDetails.date))
         } else {
             launchDetailsDate.setText(R.string.unknown_launch_date)
         }
 
-        launchDetailsSite.text = if (launchDetails.hasSiteName) launchDetails.siteName else "Unknown"
+        if (launchDetails.hasSiteName) {
+            launchDetailsSite.text =  getString(R.string.mission_launch_site, launchDetails.siteName)
+        }
 
         if (launchDetails.hasSuccess) {
-            launchDetailsOutcome.text = if (launchDetails.success) "Success" else "Failure"
+            launchDetailsOutcome.setText(if (launchDetails.success) R.string.mission_outcome_text_success else R.string.mission_outcome_text_failure)
         } else {
-            launchDetailsOutcome.text = "Unknown"
+            launchDetailsOutcome.setText(R.string.mission_outcome_text_unknown)
         }
 
         if (launchDetails.hasDetails) {

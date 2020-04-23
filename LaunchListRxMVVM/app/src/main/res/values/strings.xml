@@ -13,6 +13,11 @@
     <string name="unknown_launch_date">Unknown launch date</string>
     <string name="unknown_mission_outcome">Mission outcome: unknown</string>
 
+    <string name="mission_launch_site">Launched from:\n%s</string>
+    <string name="mission_outcome_text_success">Mission outcome: Success</string>
+    <string name="mission_outcome_text_failure">Mission outcome: Failure</string>
+    <string name="mission_outcome_text_unknown">Mission outcome: Unknown</string>
+
     <string name="forbidden_error">Access error: has your token expired?</string>
     <string name="network_error">Network error: please check your network connection.</string>
     <string name="timeout_error">Timeout error: the server is taking to long to respond.</string>

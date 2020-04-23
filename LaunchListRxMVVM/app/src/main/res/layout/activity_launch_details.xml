@@ -35,16 +35,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/launcDetailsMissionPatch"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/launchDetailsSite" />
+        app:layout_constraintBottom_toTopOf="@id/launchDetailsSite"
+        style="@style/LaunchText.DetailsAttribute" />
 
     <TextView
         android:id="@+id/launchDetailsSite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/launchDetailsDate"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/launchDetailsOutcome" />
+        app:layout_constraintBottom_toTopOf="@id/launchDetailsOutcome"
+        style="@style/LaunchText.DetailsAttribute" />
 
     <TextView
         android:id="@+id/launchDetailsOutcome"
@@ -53,15 +56,20 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/launchDetailsSite"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/launchDetailsSummary" />
+        app:layout_constraintBottom_toTopOf="@id/launchDetailsSummary"
+        style="@style/LaunchText.DetailsAttribute" />
 
     <TextView
         android:id="@+id/launchDetailsSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/missionDetailsSummaryPaddingHorizontal"
+        android:paddingEnd="@dimen/missionDetailsSummaryPaddingHorizontal"
+        android:gravity="center_horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/launchDetailsSummary"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/LaunchText.DetailsSummary" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

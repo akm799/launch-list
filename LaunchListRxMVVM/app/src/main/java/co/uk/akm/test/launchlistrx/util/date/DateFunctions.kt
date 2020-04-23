@@ -7,6 +7,7 @@ import java.util.*
 private val utc = TimeZone.getTimeZone("UTC")
 private const val DATE_FORMAT = "d MMMM yyyy"
 private const val DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX"
+private const val DATE_TIME_FORMAT_DISPLAY = "d MMMM yyyy HH:mm:ss XXX"
 
 private const val MILLIS_IN_SEC = 1000L
 private const val MILLIS_IN_MIN = 60*MILLIS_IN_SEC
@@ -17,10 +18,14 @@ fun formatInUtc(timestamp: Long): String {
     return SimpleDateFormat(DATE_TIME_FORMAT, Locale.UK).apply { timeZone = utc }.format(Date(timestamp))
 }
 
-fun reformatAsDate(datetimeString: String): String {
+fun reformatAsDate(datetimeString: String): String = reformatDateAs(datetimeString, DATE_FORMAT)
+
+fun reformatAsDateTime(datetimeString: String): String = reformatDateAs(datetimeString, DATE_TIME_FORMAT_DISPLAY)
+
+private fun reformatDateAs(datetimeString: String, dateFormat: String): String {
     val datetime = parseDate(datetimeString)
 
-    return SimpleDateFormat(DATE_FORMAT, Locale.UK).format(datetime)
+    return SimpleDateFormat(dateFormat, Locale.UK).format(datetime)
 }
 
 fun parseDate(datetimeString: String): Date {

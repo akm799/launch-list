@@ -28,6 +28,14 @@
         <item name="android:textSize">@dimen/missionAttributeTextSize</item>
     </style>
 
+    <style name="LaunchText.DetailsAttribute" parent="LaunchText">
+        <item name="android:textSize">@dimen/missionDetailsAttributeTextSize</item>
+    </style>
+
+    <style name="LaunchText.DetailsSummary" parent="LaunchText">
+        <item name="android:textSize">@dimen/missionDetailsSummaryTextSize</item>
+    </style>
+
     <style name="LaunchText.Error" parent="LaunchText">
         <item name="android:textColor">@color/errorRed</item>
     </style>

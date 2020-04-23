@@ -13,6 +13,11 @@
     <dimen name="missionNameTextSize">18sp</dimen>
     <dimen name="missionAttributeTextSize">15sp</dimen>
 
+    <dimen name="missionDetailsAttributeTextSize">17sp</dimen>
+    <dimen name="missionDetailsSummaryTextSize">16sp</dimen>
+
+    <dimen name="missionDetailsSummaryPaddingHorizontal">8dp</dimen>
+
     <dimen name="retryMarginEnd">6dp</dimen>
     <dimen name="retryMarginBottom">4dp</dimen>
 
