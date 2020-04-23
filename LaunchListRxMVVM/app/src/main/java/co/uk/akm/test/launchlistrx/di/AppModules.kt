@@ -1,6 +1,7 @@
 package co.uk.akm.test.launchlistrx.di
 
 import co.uk.akm.test.launchlistrx.BuildConfig
+import co.uk.akm.test.launchlistrx.app.processor.LaunchDetailsProcessor
 import co.uk.akm.test.launchlistrx.data.api.LaunchService
 import co.uk.akm.test.launchlistrx.data.db.LaunchDatabase
 import co.uk.akm.test.launchlistrx.data.repo.impl.PersistentLaunchRepository
@@ -14,6 +15,8 @@ import co.uk.akm.test.launchlistrx.domain.repo.LaunchRepository
 import co.uk.akm.test.launchlistrx.app.processor.impl.LaunchListProcessorIml
 import co.uk.akm.test.launchlistrx.util.retrofit.retrofitInstance
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
+import co.uk.akm.test.launchlistrx.app.processor.impl.LaunchDetailsProcessorIml
+import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchDetailsViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -43,5 +46,9 @@ val appModule = module {
 
     single<LaunchListProcessor> { LaunchListProcessorIml() }
 
+    single<LaunchDetailsProcessor> { LaunchDetailsProcessorIml() }
+
     viewModel { LaunchListViewModel(get()) }
+
+    viewModel { LaunchDetailsViewModel(get()) }
 }

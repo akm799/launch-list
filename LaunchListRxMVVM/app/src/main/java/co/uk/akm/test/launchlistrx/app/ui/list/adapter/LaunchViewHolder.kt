@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import co.uk.akm.test.launchlistrx.R
+import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListActionListener
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.util.date.reformatAsDate
 import com.bumptech.glide.Glide
@@ -15,13 +16,14 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 
-class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class LaunchViewHolder(view: View, private val actionListener: LaunchListActionListener) : RecyclerView.ViewHolder(view) {
 
     fun bindLaunch(launch: Launch) {
         val resources = itemView.resources
         bindMissionPatch(launch)
         bindNameAndDate(resources, launch)
         bindOutcome(launch)
+        bindListeners(launch)
     }
 
     private fun bindMissionPatch(launch: Launch) {
@@ -34,10 +36,7 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private fun setMissionPatch(launch: Launch) {
         val progressView = itemView.findViewById<View>(R.id.missionPatchProgress).apply { visibility = View.VISIBLE }
-        val loadingListener =
-            ImageLoadingListener(
-                progressView
-            )
+        val loadingListener = ImageLoadingListener(progressView)
 
         Glide.with(itemView)
             .load(launch.missionPatch)
@@ -78,6 +77,10 @@ class LaunchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                 visibility = View.INVISIBLE
             }
         }
+    }
+
+    private fun bindListeners(launch: Launch) {
+        itemView.setOnClickListener { actionListener.getDetailsForLaunch(launch.flightNumber) }
     }
 }
 

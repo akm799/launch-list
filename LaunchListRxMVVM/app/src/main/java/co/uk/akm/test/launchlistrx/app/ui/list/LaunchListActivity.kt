@@ -9,13 +9,14 @@ import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchListStats
 import co.uk.akm.test.launchlistrx.util.getStringWithArgsInBold
 import co.uk.akm.test.launchlistrx.app.processor.LaunchListProcessor
+import co.uk.akm.test.launchlistrx.app.ui.details.LaunchDetailsActivity
 import co.uk.akm.test.launchlistrx.app.ui.list.adapter.LaunchListAdapter
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import kotlinx.android.synthetic.main.activity_launch_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LaunchListActivity : AppCompatActivity(), LaunchListView {
+class LaunchListActivity : AppCompatActivity(), LaunchListView, LaunchListActionListener {
     private val viewModel: LaunchListViewModel by viewModel()
     private val processor: LaunchListProcessor by inject()
 
@@ -36,8 +37,7 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
     private fun initRecyclerView() {
         with(launchList) {
             layoutManager = LinearLayoutManager(this@LaunchListActivity)
-            adapter =
-                LaunchListAdapter()
+            adapter = LaunchListAdapter(this@LaunchListActivity)
         }
     }
 
@@ -54,11 +54,13 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
     }
 
     override fun onPause() {
-        super.onPause()
-
-        processor.also {
-            it.cancel()
-            it.detachView()
+        try {
+            processor.also {
+                it.cancel()
+                it.detachView()
+            }
+        } finally {
+            super.onPause()
         }
     }
 
@@ -80,6 +82,10 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView {
 
     override fun displayError(errorResId: Int) {
         launchesRequestStatus.showError(errorResId)
+    }
+
+    override fun getDetailsForLaunch(flightNumber: Int) {
+        LaunchDetailsActivity.start(this, flightNumber)
     }
 
     override fun onDestroy() {
