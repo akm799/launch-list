@@ -8,13 +8,13 @@ import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchListViewModelObserver
 
 class LaunchListViewModelObserverImpl(
-    private val owner: LifecycleOwner,
+    owner: LifecycleOwner,
     private val viewModel: LaunchListViewModel,
     private val processor: LaunchListProcessor
-) : BaseViewModelObserver<List<Launch>>(viewModel), LaunchListViewModelObserver {
+) : BaseViewModelObserver<List<Launch>>(owner, viewModel), LaunchListViewModelObserver {
 
     override fun listLaunches(type: String) {
-        viewModel.listLaunches(type).observe(owner, this)
+        observe(viewModel.listLaunches(type))
     }
 
     override fun onResult(result: List<Launch>) {

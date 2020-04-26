@@ -8,13 +8,13 @@ import co.uk.akm.test.launchlistrx.app.viewmodel.observers.LaunchDetailsViewMode
 import co.uk.akm.test.launchlistrx.domain.model.LaunchDetails
 
 class LaunchDetailsViewModelObserverImpl(
-    private val owner: LifecycleOwner,
+    owner: LifecycleOwner,
     private val viewModel: LaunchDetailsViewModel,
     private val processor: LaunchDetailsProcessor
-) : BaseViewModelObserver<LaunchDetails>(viewModel), LaunchDetailsViewModelObserver {
+) : BaseViewModelObserver<LaunchDetails>(owner, viewModel), LaunchDetailsViewModelObserver {
 
     override fun getLaunchDetails(flightNumber: Int) {
-        viewModel.getLaunchDetails(flightNumber).observe(owner, this)
+        observe(viewModel.getLaunchDetails(flightNumber))
     }
 
     override fun onResult(result: LaunchDetails) {
