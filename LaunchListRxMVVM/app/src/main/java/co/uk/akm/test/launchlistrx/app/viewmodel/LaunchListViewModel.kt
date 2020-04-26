@@ -1,7 +1,6 @@
 package co.uk.akm.test.launchlistrx.app.viewmodel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import co.uk.akm.test.launchlistrx.domain.interactor.ListLaunchesUseCase
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.util.providers.livedata.DefaultLiveDataProvider
@@ -16,16 +15,14 @@ class LaunchListViewModel(
     private val useCase: ListLaunchesUseCase,
     private val schedulerProvider: SchedulerProvider = DefaultSchedulerProvider(),
     liveDataProvider: LiveDataProvider = DefaultLiveDataProvider()
-) : BaseViewModel() {
-
-    private val launchListLiveData: MutableLiveData<CallResult<List<Launch>>> = liveDataProvider.liveDataInstance()
+) : BaseViewModel<List<Launch>>(liveDataProvider) {
 
     fun listLaunches(type: String): LiveData<CallResult<List<Launch>>> {
-        return launchListLiveData.apply {
+        return liveData.apply {
             useCase.listLaunches(type)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribe(RxObserver(this@LaunchListViewModel, this))
+                .subscribe(RxObserver(this@LaunchListViewModel))
         }
     }
 }

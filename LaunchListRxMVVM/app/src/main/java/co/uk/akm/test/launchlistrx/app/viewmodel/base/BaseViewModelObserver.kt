@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 
 abstract class BaseViewModelObserver<T>(
     private val owner: LifecycleOwner,
-    private val viewModel: BaseViewModel
+    private val viewModel: BaseViewModel<T>
 ) : Observer<CallResult<T>>, CancelableViewModelObserver {
 
     fun observe(liveData: LiveData<CallResult<T>>) {

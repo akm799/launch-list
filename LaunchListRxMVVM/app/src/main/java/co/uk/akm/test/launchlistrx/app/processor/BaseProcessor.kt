@@ -6,7 +6,7 @@ import co.uk.akm.test.launchlistrx.app.ui.list.LaunchListView
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchListViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModel
 
-interface BaseProcessor<V, VM: BaseViewModel> {
+interface BaseProcessor<V, VM: BaseViewModel<*>> {
 
     fun init(owner: LifecycleOwner, viewModel: VM)
 

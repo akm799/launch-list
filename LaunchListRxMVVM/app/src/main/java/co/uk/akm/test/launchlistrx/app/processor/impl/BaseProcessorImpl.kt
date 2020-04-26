@@ -4,7 +4,7 @@ import co.uk.akm.test.launchlistrx.app.processor.BaseProcessor
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.CancelableViewModelObserver
 
-abstract class BaseProcessorImpl<V, VM: BaseViewModel, VMO: CancelableViewModelObserver> : BaseProcessor<V, VM> {
+abstract class BaseProcessorImpl<V, VM: BaseViewModel<*>, VMO: CancelableViewModelObserver> : BaseProcessor<V, VM> {
 
     protected var view: V? = null
     protected var observer: VMO? = null
