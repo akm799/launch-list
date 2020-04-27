@@ -1,20 +1,30 @@
 package co.uk.akm.test.launchlistrx.app.processor.impl
 
+import androidx.lifecycle.LifecycleOwner
 import co.uk.akm.test.launchlistrx.app.processor.BaseProcessor
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.CancelableViewModelObserver
 
 abstract class BaseProcessorImpl<V, VM: BaseViewModel<*>, VMO: CancelableViewModelObserver> : BaseProcessor<V, VM> {
+    private var view: V? = null
+    private var observerInstance: VMO? = null
 
-    protected var view: V? = null
-    protected var observer: VMO? = null
+    override fun init(owner: LifecycleOwner, viewModel: VM) {
+        observerInstance = observerInstance(owner, viewModel)
+    }
+
+    abstract fun observerInstance(owner: LifecycleOwner, viewModel: VM): VMO
+
+    fun getObserver(): VMO? = observerInstance
 
     override fun attachView(view: V) {
         this.view = view
     }
 
+    fun getView(): V? = view
+
     override fun cancel() {
-        observer?.cancel()
+        observerInstance?.cancel()
     }
 
     override fun detachView() {
@@ -22,6 +32,6 @@ abstract class BaseProcessorImpl<V, VM: BaseViewModel<*>, VMO: CancelableViewMod
     }
 
     override fun clear() {
-        observer = null
+        observerInstance = null
     }
 }

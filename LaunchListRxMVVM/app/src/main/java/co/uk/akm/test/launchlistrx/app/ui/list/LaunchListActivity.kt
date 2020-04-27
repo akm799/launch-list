@@ -57,17 +57,6 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView, LaunchListAction
         processor.getListedLaunches()
     }
 
-    override fun onPause() {
-        try {
-            processor.also {
-                it.cancel()
-                it.detachView()
-            }
-        } finally {
-            super.onPause()
-        }
-    }
-
     override fun displayLaunches(launches: List<Launch>, statistics: LaunchListStats) {
         launchesRequestStatus.showSuccess()
         showStatistics(statistics)
@@ -90,13 +79,5 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView, LaunchListAction
 
     override fun getDetailsForLaunch(flightNumber: Int) {
         LaunchDetailsActivity.start(this, flightNumber)
-    }
-
-    override fun onDestroy() {
-        try {
-            processor.clear()
-        } finally {
-            super.onDestroy()
-        }
     }
 }

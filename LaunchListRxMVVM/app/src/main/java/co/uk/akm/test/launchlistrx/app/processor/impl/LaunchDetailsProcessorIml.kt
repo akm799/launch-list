@@ -14,19 +14,19 @@ class LaunchDetailsProcessorIml(
     private val errorResolver: ErrorResolver = DefaultErrorResolver()
 ) : BaseProcessorImpl<LaunchDetailsView, LaunchDetailsViewModel, LaunchDetailsViewModelObserver>(), LaunchDetailsProcessor {
 
-    override fun init(owner: LifecycleOwner, viewModel: LaunchDetailsViewModel) {
-        observer = LaunchDetailsViewModelObserverImpl(owner, viewModel, this)
+    override fun observerInstance(owner: LifecycleOwner, viewModel: LaunchDetailsViewModel): LaunchDetailsViewModelObserver {
+        return LaunchDetailsViewModelObserverImpl(owner, viewModel, this)
     }
 
     override fun getLaunchDetails(flightNumber: Int) {
-        observer?.getLaunchDetails(flightNumber)
+        getObserver()?.getLaunchDetails(flightNumber)
     }
 
     override fun onLaunchDetails(launchDetails: LaunchDetails) {
-        view?.displayLaunchDetails(launchDetails)
+        getView()?.displayLaunchDetails(launchDetails)
     }
 
     override fun onLaunchDetailsError(t: Throwable) {
-        view?.displayError(errorResolver.findErrorResId(t))
+        getView()?.displayError(errorResolver.findErrorResId(t))
     }
 }

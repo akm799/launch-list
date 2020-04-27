@@ -18,25 +18,25 @@ class LaunchListProcessorIml(
     private val errorResolver: ErrorResolver = DefaultErrorResolver()
 ) : BaseProcessorImpl<LaunchListView, LaunchListViewModel, LaunchListViewModelObserver>(),  LaunchListProcessor {
 
-    override fun init(owner: LifecycleOwner, viewModel: LaunchListViewModel) {
-        observer = LaunchListViewModelObserverImpl(owner, viewModel, this)
+    override fun observerInstance(owner: LifecycleOwner, viewModel: LaunchListViewModel): LaunchListViewModelObserver {
+        return LaunchListViewModelObserverImpl(owner, viewModel, this)
     }
 
     override fun getListedLaunches() {
-        observer?.getListedLaunches()
+        getObserver()?.getListedLaunches()
     }
 
     override fun listLaunches(type: String) {
-        observer?.listLaunches(type)
+        getObserver()?.listLaunches(type)
     }
 
     override fun onLaunchesListed(list: List<Launch>) {
         val statistics = calculateLaunchListStats(list)
-        view?.displayLaunches(list, statistics)
+        getView()?.displayLaunches(list, statistics)
     }
 
     override fun onLaunchListError(t: Throwable) {
-        view?.displayError(errorResolver.findErrorResId(t))
+        getView()?.displayError(errorResolver.findErrorResId(t))
     }
 
     // This method simulates some business logic.

@@ -12,6 +12,9 @@ interface BaseProcessor<V, VM: BaseViewModel<*>> {
 
     fun attachView(view: V)
 
+    /**
+     * To be called if the user explicitly wishes to cancel an ongoing request.
+     */
     fun cancel()
 
     fun detachView()

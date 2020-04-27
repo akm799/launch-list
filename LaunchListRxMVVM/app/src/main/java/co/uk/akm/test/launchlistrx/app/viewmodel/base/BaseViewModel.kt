@@ -14,6 +14,9 @@ open class BaseViewModel<T>(liveDataProvider: LiveDataProvider) : ViewModel() {
         requestInProgress = request
     }
 
+    /**
+     * Meant to be invoked if the user explicitly wishes to cancel an ongoing request.
+     */
     fun cancelRequestsInProgress() {
         requestInProgress?.dispose()
         requestInProgress = null
