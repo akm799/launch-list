@@ -6,12 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import co.uk.akm.test.launchlistrx.R
 import co.uk.akm.test.launchlistrx.app.processor.LaunchDetailsProcessor
+import co.uk.akm.test.launchlistrx.app.processor.impl.LaunchDetailsProcessorIml
 import co.uk.akm.test.launchlistrx.app.viewmodel.LaunchDetailsViewModel
 import co.uk.akm.test.launchlistrx.domain.model.LaunchDetails
 import co.uk.akm.test.launchlistrx.util.date.reformatAsDateTime
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_launch_details.*
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaunchDetailsActivity : AppCompatActivity(), LaunchDetailsView {
@@ -28,7 +28,7 @@ class LaunchDetailsActivity : AppCompatActivity(), LaunchDetailsView {
     }
 
     private val viewModel: LaunchDetailsViewModel by viewModel()
-    private val processor: LaunchDetailsProcessor by inject()
+    private val processor: LaunchDetailsProcessor = LaunchDetailsProcessorIml()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
