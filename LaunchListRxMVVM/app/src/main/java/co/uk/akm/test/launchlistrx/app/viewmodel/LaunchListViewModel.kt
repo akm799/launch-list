@@ -11,6 +11,9 @@ import co.uk.akm.test.launchlistrx.app.viewmodel.base.BaseViewModel
 import co.uk.akm.test.launchlistrx.app.viewmodel.base.CallResult
 import co.uk.akm.test.launchlistrx.app.viewmodel.rxobservers.RxObserver
 
+/**
+ * https://proandroiddev.com/5-common-mistakes-when-using-architecture-components-403e9899f4cb
+ */
 class LaunchListViewModel(
     defaultLaunchType: String,
     private val useCase: ListLaunchesUseCase,
@@ -31,7 +34,9 @@ class LaunchListViewModel(
      * This method is meant to be invoked when the user clicks on a show-launches button in the parent activity/fragment.
      */
     fun listLaunches(type: String): LiveData<CallResult<List<Launch>>> {
-        return liveData.apply { fetchLaunches(type) }
+        fetchLaunches(type)
+
+        return liveData
     }
 
     private fun fetchLaunches(type: String) {

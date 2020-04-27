@@ -48,7 +48,12 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView, LaunchListAction
     }
 
     private fun fetchLaunches() {
-        launchesRequestStatus.showProgress()
+        // This hack is because if we are coming back from the launch-details activity we will not get a call that the launch-list data have arrived since they have not changed.
+        // TODO Find a better solution.
+        if (launchList.adapter?.itemCount ?: 0 == 0) {
+            launchesRequestStatus.showProgress()
+        }
+
         processor.getListedLaunches()
     }
 

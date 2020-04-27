@@ -18,11 +18,15 @@ class LaunchDetailsViewModel(
 ) : BaseViewModel<LaunchDetails>(liveDataProvider) {
 
     fun getLaunchDetails(flightNumber: Int): LiveData<CallResult<LaunchDetails>> {
-        return liveData.apply {
-            useCase.getLaunchDetails(flightNumber)
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
-                .subscribe(RxObserver(this@LaunchDetailsViewModel))
-        }
+        fetchLaunchDetails(flightNumber)
+
+        return liveData
+    }
+
+    private fun fetchLaunchDetails(flightNumber: Int) {
+        useCase.getLaunchDetails(flightNumber)
+            .subscribeOn(schedulerProvider.io())
+            .observeOn(schedulerProvider.ui())
+            .subscribe(RxObserver(this@LaunchDetailsViewModel))
     }
 }
