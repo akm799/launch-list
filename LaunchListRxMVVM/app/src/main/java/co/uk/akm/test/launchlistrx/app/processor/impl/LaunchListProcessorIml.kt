@@ -22,6 +22,10 @@ class LaunchListProcessorIml(
         observer = LaunchListViewModelObserverImpl(owner, viewModel, this)
     }
 
+    override fun getListedLaunches() {
+        observer?.getListedLaunches()
+    }
+
     override fun listLaunches(type: String) {
         observer?.listLaunches(type)
     }

@@ -40,7 +40,7 @@ val appModule = module {
 
     single<ListLaunchesUseCase> { ListLaunchesUseCaseImpl(get()) }
 
-    viewModel { LaunchListViewModel(get()) }
+    viewModel { LaunchListViewModel(BuildConfig.LAUNCH_TYPE, get()) }
 
     viewModel { LaunchDetailsViewModel(get()) }
 }

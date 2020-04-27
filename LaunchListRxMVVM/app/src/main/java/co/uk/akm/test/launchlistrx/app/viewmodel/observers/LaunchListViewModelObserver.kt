@@ -4,5 +4,7 @@ import co.uk.akm.test.launchlistrx.app.viewmodel.base.CancelableViewModelObserve
 
 interface LaunchListViewModelObserver : CancelableViewModelObserver {
 
+    fun getListedLaunches()
+
     fun listLaunches(type: String)
 }

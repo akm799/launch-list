@@ -3,7 +3,6 @@ package co.uk.akm.test.launchlistrx.app.ui.list
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import co.uk.akm.test.launchlistrx.BuildConfig
 import co.uk.akm.test.launchlistrx.R
 import co.uk.akm.test.launchlistrx.domain.model.Launch
 import co.uk.akm.test.launchlistrx.domain.model.LaunchListStats
@@ -50,7 +49,7 @@ class LaunchListActivity : AppCompatActivity(), LaunchListView, LaunchListAction
 
     private fun fetchLaunches() {
         launchesRequestStatus.showProgress()
-        processor.listLaunches(BuildConfig.LAUNCH_TYPE)
+        processor.getListedLaunches()
     }
 
     override fun onPause() {

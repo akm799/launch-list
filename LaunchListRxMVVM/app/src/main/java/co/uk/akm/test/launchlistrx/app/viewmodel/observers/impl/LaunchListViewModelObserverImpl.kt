@@ -13,6 +13,10 @@ class LaunchListViewModelObserverImpl(
     private val processor: LaunchListProcessor
 ) : BaseViewModelObserver<List<Launch>>(owner, viewModel), LaunchListViewModelObserver {
 
+    override fun getListedLaunches() {
+        observe(viewModel.getListedLaunches())
+    }
+
     override fun listLaunches(type: String) {
         observe(viewModel.listLaunches(type))
     }
